@@ -3,6 +3,12 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+/src/main/resources/static/css/
+/src/main/resources/static/img/
+/src/main/resources/static/js/
+/src/main/resources/static/favicon.ico
+/src/main/resources/static/index.html
+
 
 ### STS ###
 .apt_generated
@@ -31,8 +37,3 @@ build/
 
 ### VS Code ###
 .vscode/
-/src/main/resources/static/css/
-/src/main/resources/static/img/
-/src/main/resources/static/js/
-/src/main/resources/static/favicon.ico
-/src/main/resources/static/index.html
