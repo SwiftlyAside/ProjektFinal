@@ -14,7 +14,7 @@
 		<%@ include file="userManagement/userMenu.jsp"%>
 	</span>
 	<span class='myPageForm-right'> 
-		<c:import url="${home }${path }"></c:import>
+		<c:import url="${home }${path }"/>
 	</span>
 </body>
 <style>
