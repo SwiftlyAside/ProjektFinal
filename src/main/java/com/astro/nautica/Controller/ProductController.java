@@ -1,10 +1,9 @@
-package com.astro.nautica;
+package com.astro.nautica.Controller;
 
 import com.astro.nautica.Service.IProductService;
 import com.astro.nautica.VO.CategoryVO;
 import com.astro.nautica.VO.ProductVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,16 +33,6 @@ public class ProductController {
     public List<String> onlyArray() {
         return new ArrayList<>(Arrays.asList("bean", "coffee", "brew"));
     }
-
-    @GetMapping("/user/bookmarkInfo")
-    public Map<String, String> bookmarkLst() {
-        Map<String, String> bookmarkCnt = new HashMap<>();
-        bookmarkCnt.put("productId", "001");
-        bookmarkCnt.put("productName", "마티스");
-        bookmarkCnt.put("productPrice", "1000");
-        return bookmarkCnt;
-    }
-
 
     @RequestMapping("/selectTest")
     public List<ProductVO> selectTest() {

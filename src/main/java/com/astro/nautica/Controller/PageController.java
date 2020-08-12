@@ -1,4 +1,4 @@
-package com.astro.nautica;
+package com.astro.nautica.Controller;
 
 import java.util.HashMap;
 import java.util.Map;
