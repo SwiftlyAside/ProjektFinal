@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class PageController {
@@ -25,6 +26,7 @@ public class PageController {
 		pathMap.put("inquireInfo", "userManagement/userInquireForm");
 		pathMap.put("reviewInfo", "userManagement/userReviewForm");
 		pathMap.put("adminHome", "admin/adminHome");
+		pathMap.put("answerPage", "admin/answerPage");
 	}
 	//index
 	@RequestMapping(value = "/")
@@ -49,7 +51,15 @@ public class PageController {
 
 	//admin page mapping
 	@RequestMapping(value = "/admin/{path}")
-	public String adminPath(Model model, @PathVariable String path) {
+	public String adminPath(Model model, @PathVariable String path, @RequestParam(value = "questionNo", required = false) String questionNo) {
+
+		// For detail answer page
+		// 1. Add if sentence
+		// 2. Add RequestParam for searching question no
+		if ("detail".contentEquals(path)) {
+			model.addAttribute("questionNo", questionNo);
+			return "admin/detailAnswerPage";
+		}
 		model.addAttribute("path", "form/" + path);
 		return "adminPage";
 	}

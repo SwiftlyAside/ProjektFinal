@@ -10,11 +10,15 @@
 	<div class='top'>
 		<%@ include file="common/top.jspf"%>
 	</div>
-	<span class='myPageForm-left'> 
-		<%@ include file="admin/adminMenu.jsp"%>
-	</span>
-	<span class='myPageForm-right'> 
-		<c:import url="${home }${path }"/>
-	</span>
+	<table>
+		<tr>
+		<td>
+			<%@ include file="admin/adminMenu.jsp"%>
+		</td>
+		<td style="width: 100%; text-align: center">
+			<c:import url="${home }${path }"/>
+		</td>
+		</tr>
+	</table>
 </body>
 </html>

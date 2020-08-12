@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:url var='home' value='/' />
-<div class='userMenu'>
+<div>
 	<div>
 		<img alt="img" src="">
 	</div>
@@ -54,7 +54,7 @@
 		<input type='text' value='사이트 관리' readonly />
 	</div>
 	<div>
-		<a <%--href='${home }user/inquireInfo'--%>>
+		<a href='${home }admin/answerPage'>
 			<button>문의 내용 답변</button>
 		</a>
 <%--		<a &lt;%&ndash;href='${home }user/inquireInfo'&ndash;%&gt;>--%>
