@@ -2,6 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.astro.nautica.Mapper.ProductMapper">
     <select id="selectTest" resultType="ProductVO">
-        SELECT * FROM PRODUCT
+        SELECT *
+        FROM PRODUCT
+    </select>
+    <select id="getCategories" resultType="CategoryVO">
+        SELECT CATEGORYID, CATEGORYNAME
+        FROM CATEGORY
+        ORDER BY CATEGORYID
     </select>
 </mapper>

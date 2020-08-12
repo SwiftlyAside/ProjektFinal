@@ -1,5 +1,7 @@
 package com.astro.nautica;
 
+import com.astro.nautica.Service.IProductService;
+import com.astro.nautica.VO.CategoryVO;
 import com.astro.nautica.VO.ProductVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,5 +48,10 @@ public class ProductController {
     @RequestMapping("/selectTest")
     public List<ProductVO> selectTest() {
         return productService.selectTest();
+    }
+
+    @RequestMapping("/getCategories")
+    public List<CategoryVO> getCategories() {
+        return productService.getCategories();
     }
 }
