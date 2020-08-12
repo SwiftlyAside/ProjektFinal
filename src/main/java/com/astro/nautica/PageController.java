@@ -27,6 +27,7 @@ public class PageController {
 	public String index() {
 		return "redirect:/local/man";
 	}
+
 	//index-membership
 	@RequestMapping(value = "/local/{path}")
 	public String path(Model model, @PathVariable String path) {

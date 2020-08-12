@@ -1,5 +1,9 @@
 package com.astro.nautica;
 
+import com.astro.nautica.VO.ProductVO;
+
+import java.util.List;
+
 public interface IProductService {
-    void sample();
+    List<ProductVO> selectTest();
 }

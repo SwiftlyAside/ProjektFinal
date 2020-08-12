@@ -1,5 +1,6 @@
 package com.astro.nautica;
 
+import com.astro.nautica.VO.ProductVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,4 +31,9 @@ public class CommandController {
         return new ArrayList<>(Arrays.asList("bean", "coffee", "brew"));
     }
 
+
+    @RequestMapping("/selectTest")
+    public List<ProductVO> selectTest() {
+        return productService.selectTest();
+    }
 }
