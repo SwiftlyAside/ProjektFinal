@@ -1,6 +1,7 @@
 package com.astro.nautica.Service;
 
 import com.astro.nautica.Mapper.ProductMapper;
+import com.astro.nautica.VO.CategoryDetailsVO;
 import com.astro.nautica.VO.CategoryVO;
 import com.astro.nautica.VO.ProductVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,15 @@ public class ProductService implements IProductService {
     @Override
     public List<CategoryVO> getCategories() {
         return productMapper.getCategories();
+    }
+
+    @Override
+    public Boolean isExistProduct(String productName) {
+        return productMapper.isExistProduct(productName);
+    }
+
+    @Override
+    public List<CategoryDetailsVO> getCategoryDetails(String categoryId) {
+        return productMapper.getCategoryDetails(categoryId);
     }
 }
