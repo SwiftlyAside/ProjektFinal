@@ -1,6 +1,7 @@
 package com.astro.nautica;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,6 +29,15 @@ public class CommandController {
     @RequestMapping("/onlyArray")
     public List<String> onlyArray() {
         return new ArrayList<>(Arrays.asList("bean", "coffee", "brew"));
+    }
+    
+    @GetMapping("/user/bookmarkInfo")
+    public Map<String, String> bookmarkLst(){
+    	Map<String, String> bookmarkCnt = new HashMap<String, String>();
+    	bookmarkCnt.put("productId", "001");
+    	bookmarkCnt.put("productName", "마티스");
+    	bookmarkCnt.put("productPrice", "1000");
+    	return bookmarkCnt;
     }
 
 }

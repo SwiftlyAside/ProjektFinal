@@ -21,6 +21,9 @@ public class PageController {
 		pathMap.put("userHome", "userManagement/userHome");
 		pathMap.put("modifyInfo", "userManagement/userModifyMemberForm");
 		pathMap.put("orderInfo", "userManagement/userOrderForm");
+		pathMap.put("bookmarkInfo", "userManagement/userBookmarkForm");
+		pathMap.put("inquireInfo", "userManagement/userInquireForm");
+		pathMap.put("reviewInfo", "userManagement/userReviewForm");
 	}
 	//index
 	@RequestMapping(value = "/")
@@ -41,10 +44,12 @@ public class PageController {
 		model.addAttribute("path", "form/" + path);
 		return "userIndex";
 	}
-	
+
 	@RequestMapping(value = "/form/{path}")
 	public String formPath(@PathVariable String path) {
 		System.out.println("form? : " + path);
 		return pathMap.get(path);
 	}
+	
+	
 }

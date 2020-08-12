@@ -31,17 +31,17 @@
 		<input type='text' value='나의 활동 내역' readonly />
 	</div>
 	<div>
-		<a href='${home }user/'>
+		<a href='${home }user/bookmarkInfo'>
 			<button id='bookmarkInfo'>찜목록</button>
 		</a>
 	</div>
 	<div>
-		<a href='${home }user/'>
+		<a href='${home }user/inquireInfo'>
 			<button id='inquireInfo'>문의 내용</button>
 		</a>
 	</div>
 	<div>
-		<a href='${home }user/modify'>
+		<a href='${home }user/reviewInfo'>
 			<button id='reviewInfo'>제품 리뷰</button>
 		</a>
 	</div>
