@@ -39,11 +39,11 @@ public class PageController {
 	public String userPath(Model model, @PathVariable String path) {
 		System.out.println("userPage? : " + path);
 		model.addAttribute("path", "form/" + path);
-		return "userIndex";	//왜 이동을 못 하는 것이지?
+		return "userIndex";
 	}
 	
 	@RequestMapping(value = "/form/{path}")
-	public String formpath(@PathVariable String path) {
+	public String formPath(@PathVariable String path) {
 		System.out.println("form? : " + path);
 		return pathMap.get(path);
 	}
