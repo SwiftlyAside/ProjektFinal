@@ -34,14 +34,14 @@ public class ProductController {
     public List<String> onlyArray() {
         return new ArrayList<>(Arrays.asList("bean", "coffee", "brew"));
     }
-    
+
     @GetMapping("/user/bookmarkInfo")
-    public Map<String, String> bookmarkLst(){
-    	Map<String, String> bookmarkCnt = new HashMap<String, String>();
-    	bookmarkCnt.put("productId", "001");
-    	bookmarkCnt.put("productName", "마티스");
-    	bookmarkCnt.put("productPrice", "1000");
-    	return bookmarkCnt;
+    public Map<String, String> bookmarkLst() {
+        Map<String, String> bookmarkCnt = new HashMap<>();
+        bookmarkCnt.put("productId", "001");
+        bookmarkCnt.put("productName", "마티스");
+        bookmarkCnt.put("productPrice", "1000");
+        return bookmarkCnt;
     }
 
 
