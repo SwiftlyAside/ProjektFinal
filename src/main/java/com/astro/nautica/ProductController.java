@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.*;
 
 @RestController
-public class CommandController {
+@RequestMapping("product")
+public class ProductController {
     private final IProductService productService;
 
     @Autowired
-    public CommandController(IProductService productService) {
+    public ProductController(IProductService productService) {
         this.productService = productService;
     }
 
