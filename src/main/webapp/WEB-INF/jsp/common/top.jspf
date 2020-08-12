@@ -1,0 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="root" value="${pageContext.request.contextPath }/"/>
+<div class='topClass'>
+	<span>
+		<a href='${root }user/userHome'>마이페이지
+			<button class='btn'>마이페이지</button>
+		</a>
+	</span>
+	<span>
+		<a href='${root }shoppingCart'>
+			<button class='btn'>장바구니</button>
+		</a>
+	</span>
+	<span>
+		<a href='${root }local/login'>
+			<button class='btn'>로그인</button>
+		</a>
+	</span>
+</div>
+<style scoped="scoped">
+	.topClass{
+		text-align: right;
+	}
+</style>

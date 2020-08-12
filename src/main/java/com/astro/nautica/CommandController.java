@@ -1,12 +1,20 @@
 package com.astro.nautica;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
 
 @RestController
-public class HomeController {
+public class CommandController {
+    private final IProductService productService;
+
+    @Autowired
+    public CommandController(IProductService productService) {
+        this.productService = productService;
+    }
+
 
     @RequestMapping("/mantoman")
     public Map<String, Object> man() {
@@ -21,4 +29,5 @@ public class HomeController {
     public List<String> onlyArray() {
         return new ArrayList<>(Arrays.asList("bean", "coffee", "brew"));
     }
+
 }
