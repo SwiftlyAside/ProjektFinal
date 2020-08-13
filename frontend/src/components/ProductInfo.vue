@@ -4,7 +4,7 @@
     <v-list shaped>
       <v-subheader>Products</v-subheader>
       <v-list-item-group>
-        <v-list-item v-bind:key="i" v-for="(item, i) in items">
+        <v-list-item :key="i" v-for="(item, i) in items">
           <v-list-item-content>
             <v-list-item-title v-text="item.productName"></v-list-item-title>
             <v-list-item-subtitle v-text="item.price + '원'"></v-list-item-subtitle>
