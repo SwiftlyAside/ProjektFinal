@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.astro.nautica.Mapper.ProductMapper">
-    <select id="selectTest" resultType="ProductVO">
+    <select id="selectTest" resultType="com.astro.nautica.VO.ProductVO">
         SELECT *
         FROM PRODUCT
     </select>
-    <select id="getCategories" resultType="CategoryVO">
+    <select id="getCategories" resultType="com.astro.nautica.VO.CategoryVO">
         SELECT CATEGORYID, CATEGORYNAME
         FROM CATEGORY
         ORDER BY CATEGORYID

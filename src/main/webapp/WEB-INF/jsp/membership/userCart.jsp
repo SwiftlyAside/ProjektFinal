@@ -2,17 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:url var="home" value='/' />
-<div id='bookmark'>
-	<h2>bookmark page~</h2>
+<div id='cart'>
+	<h2>ShoppingCart Page</h2>
 </div>
 <script>
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '${home}member/bookmarkInfo');
+	xhr.open('GET', '${home}member/cartInfo');
 	xhr.onreadystatechange = function(){
 		if(xhr.status == 200 && xhr.readyState == 4){
 			var str = xhr.responseText;
 			var json = JSON.parse(str);
-			var bmpage = document.getElementById('bookmark');
+			var bmpage = document.getElementById('cart');
 			for(var i=0;i<json.length;i++){
 				bmpage.innerHTML += "<div id='" + json[i].productId + "'></div>";
 				var div = document.getElementById(json[i].productId);

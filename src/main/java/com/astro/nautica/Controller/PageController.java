@@ -24,6 +24,7 @@ public class PageController {
 		pathMap.put("bookmarkInfo", "userManagement/userBookmarkForm");
 		pathMap.put("inquireInfo", "userManagement/userInquireForm");
 		pathMap.put("reviewInfo", "userManagement/userReviewForm");
+		pathMap.put("shoppingCart", "membership/userCart");
 	}
 	//index
 	@RequestMapping(value = "/")
