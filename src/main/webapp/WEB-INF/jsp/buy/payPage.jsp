@@ -1,19 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
     <html>
 <head>
 <title>payPage</title>
 </head>
 <body>
 	<div class='top'>
-		<%@ include file="../common/top.jspf"%>
+		<%@ include file= "/WEB-INF/jsp/common/top.jspf" %>
 	</div>
 	<h2>구매 목록</h2>
 	<div id='buyList'></div>
 	<div>
 		<div>
 			<div>
-				<input type='text' value='주문자 정보 입력' readonly />
+				<h3>주문자 정보 입력</h3>
 			</div>
 			<div>
 				<input type='text' value='주문자명' readonly />
@@ -21,7 +22,7 @@
 			</div>
 			<p>
 			<div>
-				<input type='text' value='배송지 정보 입력' readonly />
+				<h3>배송지 정보 입력</h3>
 			</div>
 			<div>
 				<input type='text' value='이름' readonly />
@@ -45,13 +46,13 @@
 				<input type='text' value='배송 메시지' readonly />
 			</div>
 			<div>
-				<input type='text' name='comment' />
+				<input type='text' name='comment' placeholder="배송기사님께 전달할 내용을 적어주세요."/>
 			</div>
 		</div>
 		<p>
 		<div>
 			<div>
-				<input type='text' value='결제' readonly />
+				<h3>결제</h3>
 			</div>
 			<div>
 				<input type='text' value='결제 방법' readonly />
