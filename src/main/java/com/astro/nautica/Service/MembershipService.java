@@ -51,4 +51,9 @@ public class MembershipService implements IMembershipService {
         }
         return false;
     }
+
+    @Override
+    public boolean makeMember(MemberVO memberVO) {
+        return membershipMapper.makeMember(memberVO);
+    }
 }

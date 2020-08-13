@@ -20,4 +20,8 @@
         UPDATE MEMBER SET PW = #{pw}
         WHERE ID = #{data} OR EMAIL = #{data}
     </update>
+    <insert id="makeMember" parameterType="MemberVO">
+        INSERT INTO MEMBER
+        VALUES (#{id}, #{pw}, #{name}, #{email})
+    </insert>
 </mapper>

@@ -20,4 +20,7 @@ public interface MembershipMapper {
 
     // pw 변경하기
     int changePw(Map<String, Object> map);
+
+    // 회원가입
+    boolean makeMember(MemberVO memberVO);
 }

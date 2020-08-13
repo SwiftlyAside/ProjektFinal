@@ -1,5 +1,6 @@
 package com.astro.nautica.Service;
 
+import com.astro.nautica.VO.MemberVO;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.Map;
@@ -16,4 +17,7 @@ public interface IMembershipService {
 
     // pw 변경하기
     boolean changePw(String data, String pw, String pwOk);
+
+    // 회원가입
+    boolean makeMember(MemberVO memberVO);
 }

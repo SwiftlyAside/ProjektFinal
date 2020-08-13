@@ -1,6 +1,7 @@
 package com.astro.nautica.Controller;
 
 import com.astro.nautica.Service.IMembershipService;
+import com.astro.nautica.VO.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -52,5 +53,14 @@ public class MembershipController {
     @RequestMapping("/changePw")
     public boolean changePw(@RequestParam("data") String data, @RequestParam("pw") String pw, @RequestParam("pwOk") String pwOk) {
         return iMembershipService.changePw(data, pw, pwOk);
+    }
+
+    @RequestMapping("/makeMember")
+    public String makeMember(MemberVO memberVO) {
+        if (this.isExist(memberVO.getId()) != 1 /*pw 체크 생략*/) {
+            iMembershipService.makeMember(memberVO);
+            return "회원가입 성공";
+        }
+        return "회원가입 실패";
     }
 }
