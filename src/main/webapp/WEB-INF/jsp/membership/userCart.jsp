@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:url var="home" value='/' />
-<form id='frmCart' action='${home }buy/gotoPay'>
+<form id='frmCart'>
 	<div id='cart'>
 		<h2>ShoppingCart Page</h2>
 	</div>
-	<div><button id='gotopayBtn'>구매</button></div>
+	<div><button id='gotopayBtn'  onclick='gotoPay();'>구매</button></div>
 </form>
 <script>
 	var lst = [];
@@ -32,19 +32,21 @@
 		div.innerHTML = "<span><img alt='' src=''></span>"
 			+ "<span><label id='pname" + shoppingCart[i].id + "'></label><br/>"
 			+ "<label id='pprice" + shoppingCart[i].id + "'></label><br/>"
-			+ "<button id='btn" + shoppingCart[i].id + "'>선물하기</button></span>";
+			+ "<button id='delBtn" + shoppingCart[i].id + "'"
+			+ 	"onclick='deleteCartLst('" + i + "')'>X</button></span>";
 		var pname = document.getElementById('pname' + shoppingCart[i].id);
 		var pprice = document.getElementById('pprice' + shoppingCart[i].id);
 		pname.innerHTML = '<b>' + shoppingCart[i].name + '</b>';
 		pprice.innerHTML = shoppingCart[i].price;
 	}
-	function deleteCartLst(btnId){
-		
+	function deleteCartLst(i){
+		/* 배열삭제 구분 */
+		localStorage.setItem('shoppingCart', JSON.stringify(lst));
+		alert('삭제');
 	}
 	function gotoPay(){
-		var btn = document.getElementById('gotopayBtn');
-		btn.onclick = function(){
-			frm.submit();
-		}
+		var frm = document.getElementById('frmCart');
+		frm.action = '${home }buy/gotoPay';
+		frm.submit();
 	}
 </script>

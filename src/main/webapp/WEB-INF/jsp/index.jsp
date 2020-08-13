@@ -27,7 +27,7 @@
 <script src=/js/chunk-vendors.cdd1e580.js.js></script>
 <script src=/js/app.f97acbb0.js></script>
 <div>
-    <%@ include file="common/top.jspf" %>
+    <%@ include file="/WEB-INF/jsp/common/top.jspf" %>
 </div>
 <c:set var="home" value="/"/>
 <div>
