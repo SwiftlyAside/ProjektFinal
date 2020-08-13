@@ -27,7 +27,12 @@ public class InquireController {
     }
 
     @RequestMapping("/detail")
-    public InquireVO getDetail(@RequestParam(value = "questionNo", required = false) int questionNo) {
-        return inquireService.getInquire(questionNo);
+    public InquireVO getDetail(@RequestParam(value = "inquireId", required = false) int inquireId) {
+        return inquireService.getInquire(inquireId);
+    }
+
+    @RequestMapping("/answer")
+    public void answer(@RequestParam("inquireId") int inquireId, @RequestParam("answer") String answer) {
+        inquireService.answerInquire(inquireId, answer);
     }
 }

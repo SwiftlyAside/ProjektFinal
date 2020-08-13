@@ -10,4 +10,7 @@ public interface IInquireService {
 
     // 선택된 문의를 Inquire VO 로 반환
     InquireVO getInquire(int inquireId);
+
+    // 문의에 답변하기
+    boolean answerInquire(int inquireId, String answer);
 }

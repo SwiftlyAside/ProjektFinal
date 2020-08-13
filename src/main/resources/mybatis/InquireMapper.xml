@@ -13,4 +13,8 @@
         WHERE INQUIREID = #{inquireId}
     </select>
 
+    <insert id="answerInquire" parameterType="Map">
+        UPDATE INQUIRE SET ANSWER = #{answer}
+        WHERE INQUIREID = #{inquireId}
+    </insert>
 </mapper>

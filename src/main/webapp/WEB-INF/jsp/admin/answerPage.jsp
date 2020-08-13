@@ -32,7 +32,7 @@
 
     function detail(id) {
       let xlr = new XMLHttpRequest();
-      xlr.open('GET', '${home}admin/detail?questionNo=' + id);
+      xlr.open('GET', '${home}admin/detail?inquireId=' + id);
       xlr.onreadystatechange = () => {
         if (xlr.status === 200 && xlr.readyState === 4) {
           let target = document.getElementById('detail_' + id);
