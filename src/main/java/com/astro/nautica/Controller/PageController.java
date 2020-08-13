@@ -63,6 +63,12 @@ public class PageController {
 	public String buyPath(@PathVariable String path) {
 		return pathMap.get(path);
 	}
+	
+	//buy
+	@RequestMapping(value = "/buy/{path}")
+	public String buyPath(@PathVariable String path) {
+		return pathMap.get(path);
+	}
 
 	@RequestMapping(value = "/form/{path}")
 	public String formPath(@PathVariable String path) {
