@@ -7,6 +7,7 @@ import com.astro.nautica.VO.ProductVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -36,5 +37,16 @@ public class ProductService implements IProductService {
     @Override
     public List<CategoryDetailsVO> getCategoryDetails(String categoryId) {
         return productMapper.getCategoryDetails(categoryId);
+    }
+
+    @Override
+    public Boolean addProduct(ProductVO productVO) {
+        try {
+            productMapper.addProduct(productVO);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }

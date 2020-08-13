@@ -36,4 +36,12 @@ public interface IProductService {
      * @return 소분류 리스트
      */
     List<CategoryDetailsVO> getCategoryDetails(String categoryId);
+
+    /**
+     * 상품을 등록하고 성공여부를 반환.
+     *
+     * @param productVO 등록할 상품
+     * @return 성공여부
+     */
+    Boolean addProduct(ProductVO productVO);
 }

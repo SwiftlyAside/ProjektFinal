@@ -6,6 +6,7 @@ import com.astro.nautica.VO.ProductVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Repository
@@ -40,4 +41,11 @@ public interface ProductMapper {
      * @return CategoryDetailVO 리스트
      */
     List<CategoryDetailsVO> getCategoryDetails(String categoryId);
+
+    /**
+     * 상품을 등록.
+     *
+     * @param productVO 등록할 상품
+     */
+    void addProduct(ProductVO productVO) throws SQLException;
 }

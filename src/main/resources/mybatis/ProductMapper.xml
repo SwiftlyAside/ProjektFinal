@@ -20,4 +20,8 @@
         FROM CATEGORYDETAILS
         WHERE CATEGORYID = #{categoryId}
     </select>
+    <insert id="addProduct" parameterType="ProductVO">
+        INSERT INTO PRODUCT(PID, CATEGORYID, PRODUCTIMAGE, PRODUCTNAME, EA, PRICE, SALERATE)
+        VALUES (#{pid}, #{categoryId}, #{productImage}, #{productName}, #{ea}, #{price}, #{saleRate})
+    </insert>
 </mapper>

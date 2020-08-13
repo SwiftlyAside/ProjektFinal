@@ -40,4 +40,9 @@ public class ProductController {
     public List<CategoryDetailsVO> getCategoryDetails(@RequestParam(value = "categoryId", defaultValue = "nay") String categoryId) {
         return productService.getCategoryDetails(categoryId);
     }
+
+    @RequestMapping("/addProduct")
+    public Boolean addProduct(ProductVO productVO) {
+        return productService.addProduct(productVO);
+    }
 }
