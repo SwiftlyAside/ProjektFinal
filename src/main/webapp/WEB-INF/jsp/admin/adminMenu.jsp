@@ -20,7 +20,7 @@
 		</a>
 		<a <%--href='${home }user/modifyInfo'--%>>
 			<button>수정</button>
-		</a
+		</a>
 		<a <%--href='${home }user/modifyInfo'--%>>
 			<button>삭제</button>
 		</a>

@@ -14,17 +14,17 @@
 			var json = JSON.parse(str);
 			var bmpage = document.getElementById('bookmark');
 			for(var i=0;i<json.length;i++){
-				bmpage.innerHTML += "<div id='" + json[i].productId + "'></div>";
-				var div = document.getElementById(json[i].productId);
+				bmpage.innerHTML += "<div id='" + json[i].pid + "'></div>";
+				var div = document.getElementById(json[i].pid);
 				div.innerHTML = "<span><img alt='' src=''></span>"
-					+ "<span><label id='pname" + json[i].productId + "'></label><br/>"
-					+ "<label id='pprice" + json[i].productId + "'></label><br/>"
-					+ "<button id='btn" + json[i].productId + "'>선물하기</button></span>";
+					+ "<span><label id='pname" + json[i].pid + "'></label><br/>"
+					+ "<label id='pprice" + json[i].pid + "'></label><br/>"
+					+ "<button id='btn" + json[i].pid + "'>선물하기</button></span>";
 					
-				var pname = document.getElementById('pname' + json[i].productId);
-				var pprice = document.getElementById('pprice' + json[i].productId);
+				var pname = document.getElementById('pname' + json[i].pid);
+				var pprice = document.getElementById('pprice' + json[i].pid);
 				pname.innerHTML = '<b>' + json[i].productName + '</b>';
-				pprice.innerHTML = json[i].productPrice;
+				pprice.innerHTML = json[i].price;
 			}
 			
 		}
