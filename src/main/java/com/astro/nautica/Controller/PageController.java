@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class PageController {
@@ -25,8 +24,6 @@ public class PageController {
 		pathMap.put("bookmarkInfo", "userManagement/userBookmarkForm");
 		pathMap.put("inquireInfo", "userManagement/userInquireForm");
 		pathMap.put("reviewInfo", "userManagement/userReviewForm");
-		pathMap.put("adminHome", "admin/adminHome");
-		pathMap.put("answerPage", "admin/answerPage");
 		pathMap.put("shoppingCart", "membership/userCart");
 		pathMap.put("gotoPay", "buy/payPage");
 	}
@@ -48,20 +45,7 @@ public class PageController {
 	public String userPath(Model model, @PathVariable String path) {
 		System.out.println("userPage? : " + path);
 		model.addAttribute("path", "form/" + path);
-		return "userPage";
-	}
-
-	//admin page mapping
-	@RequestMapping(value = "/admin/{path}")
-	public String adminPath(Model model, @PathVariable String path) {
-		model.addAttribute("path", "form/" + path);
-		return "adminPage";
-	}
-
-	//buy
-	@RequestMapping(value = "/buy/{path}")
-	public String buyPath(@PathVariable String path) {
-		return pathMap.get(path);
+		return "userIndex";
 	}
 	
 	//buy
