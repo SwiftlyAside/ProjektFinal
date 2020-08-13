@@ -12,4 +12,7 @@ public interface MembershipMapper {
 
     // 입력 받은 id로 id pw 가져오기
     MemberVO login(String id);
+
+    // email 로 id 찾기
+    String findId(String email);
 }

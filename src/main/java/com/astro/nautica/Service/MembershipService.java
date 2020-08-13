@@ -4,6 +4,11 @@ import com.astro.nautica.Mapper.MembershipMapper;
 import com.astro.nautica.VO.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class MembershipService implements IMembershipService {
@@ -21,9 +26,16 @@ public class MembershipService implements IMembershipService {
     }
 
     @Override
-    public boolean login(String id, String pw) {
-        if (this.isExistId(id) == 1)
-            return pw.contentEquals(membershipMapper.login(id).getPw());
+    public boolean login(String id, String pw, @ModelAttribute("userInfo") Map<String, Object> userInfo) {
+        if (this.isExistId(id) == 1 && pw.contentEquals(membershipMapper.login(id).getPw())) {
+                userInfo.put("id", id);
+                return true;
+        }
         return false;
+    }
+
+    @Override
+    public String findId(String email) {
+        return membershipMapper.findId(email);
     }
 }

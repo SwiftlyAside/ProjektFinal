@@ -2,16 +2,14 @@ package com.astro.nautica.Controller;
 
 import com.astro.nautica.Service.IMembershipService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
 @RequestMapping("member")
+@SessionAttributes("userInfo")
 public class MembershipController {
 
     private final IMembershipService iMembershipService;
@@ -19,6 +17,11 @@ public class MembershipController {
     @Autowired
     public MembershipController(IMembershipService iMembershipService) {
         this.iMembershipService = iMembershipService;
+    }
+
+    @ModelAttribute("userInfo")
+    public Map<String, Object> getSessionInfo() {
+        return new HashMap<>();
     }
 
 
@@ -37,8 +40,13 @@ public class MembershipController {
     }
 
     @RequestMapping("/login")
-    public boolean login(@RequestParam("id") String id, @RequestParam("pw") String pw) {
-       return iMembershipService.login(id,pw);
+    public boolean login(@RequestParam("id") String id, @RequestParam("pw") String pw, @ModelAttribute("userInfo") Map<String, Object> userInfo)  {
+       return iMembershipService.login(id, pw, userInfo);
+    }
+
+    @RequestMapping("/findId")
+    public String findId(@RequestParam("email") String email) {
+        return iMembershipService.findId(email);
     }
 
 }

@@ -11,4 +11,9 @@
         FROM MEMBER
         WHERE ID = #{id}
     </select>
+    <select id="findId" resultType="String" parameterType="String">
+        SELECT ID
+        FROM MEMBER
+        WHERE EMAIL = #{email}
+    </select>
 </mapper>
