@@ -4,7 +4,7 @@
 <c:set var="home" value="/" />
 <html>
 <head>
-<title>USER PAGE</title>
+<title>USERINDEX</title>
 </head>
 <body>
 	<div class='top'>
