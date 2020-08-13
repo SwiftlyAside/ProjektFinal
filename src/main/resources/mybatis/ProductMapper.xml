@@ -10,4 +10,18 @@
         FROM CATEGORY
         ORDER BY CATEGORYID
     </select>
+    <select id="isExistProduct" parameterType="String" resultType="boolean">
+        SELECT COUNT(*)
+        FROM PRODUCT
+        WHERE PRODUCTNAME = #{productName}
+    </select>
+    <select id="getCategoryDetails" parameterType="String" resultType="CategoryDetailsVO">
+        SELECT DETAILID, CATEGORYID, DETAIL
+        FROM CATEGORYDETAILS
+        WHERE CATEGORYID = #{categoryId}
+    </select>
+    <insert id="addProduct" parameterType="ProductVO">
+        INSERT INTO PRODUCT(PID, CATEGORYID, PRODUCTIMAGE, PRODUCTNAME, EA, PRICE, SALERATE)
+        VALUES (#{pid}, #{categoryId}, #{productImage}, #{productName}, #{ea}, #{price}, #{saleRate})
+    </insert>
 </mapper>
