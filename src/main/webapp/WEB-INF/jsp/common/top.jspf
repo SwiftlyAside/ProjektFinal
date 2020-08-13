@@ -13,6 +13,9 @@
 	<span>
 		<a href='${root }local/login'><button class='btn'>로그인</button></a>
 	</span>
+	<span>
+		<a href='${root }admin/adminHome'><button class='btn'>관리자페이지</button></a>
+	</span>
 </div>
 <style>
 	.topClass{
