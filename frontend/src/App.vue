@@ -5,27 +5,11 @@
       color="primary"
       dark
     >
-      <v-btn @click="fetchData"/>
+      <v-btn @click="fetchData">데이터 수신</v-btn>
       <v-btn @click="setSessionStorage">세션 세팅</v-btn>
 
       <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
         <h1 v-if="man.length > 0">{{ man[5].categoryName }}</h1>
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
       </div>
 
       <v-spacer></v-spacer>
@@ -41,20 +25,20 @@
     </v-app-bar>
 
     <v-main>
-      <HelloWorld/>
+      <product-info/>
     </v-main>
   </v-app>
 </template>
 
 <script>
 import axios from 'axios';
-import HelloWorld from './components/HelloWorld.vue';
+import ProductInfo from './components/ProductInfo.vue';
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
+    ProductInfo,
   },
 
   data() {
