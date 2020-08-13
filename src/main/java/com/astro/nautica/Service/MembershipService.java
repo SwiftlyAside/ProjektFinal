@@ -38,4 +38,17 @@ public class MembershipService implements IMembershipService {
     public String findId(String email) {
         return membershipMapper.findId(email);
     }
+
+    @Override
+    public boolean changePw(String data, String pw, String pwOk) {
+        if (pw.contentEquals(pwOk)) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("data", data);
+            map.put("pw", pw);
+            membershipMapper.changePw(map);
+
+            return true;
+        }
+        return false;
+    }
 }

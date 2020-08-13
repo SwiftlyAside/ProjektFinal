@@ -13,4 +13,7 @@ public interface IMembershipService {
 
     // email 로 id 찾기
     String findId(String email);
+
+    // pw 변경하기
+    boolean changePw(String data, String pw, String pwOk);
 }

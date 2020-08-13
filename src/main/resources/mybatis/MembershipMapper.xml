@@ -16,4 +16,8 @@
         FROM MEMBER
         WHERE EMAIL = #{email}
     </select>
+    <update id="changePw" parameterType="Map">
+        UPDATE MEMBER SET PW = #{pw}
+        WHERE ID = #{data} OR EMAIL = #{data}
+    </update>
 </mapper>

@@ -4,6 +4,8 @@ import com.astro.nautica.VO.MemberVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.Map;
+
 @Repository
 @Mapper
 public interface MembershipMapper {
@@ -15,4 +17,7 @@ public interface MembershipMapper {
 
     // email 로 id 찾기
     String findId(String email);
+
+    // pw 변경하기
+    int changePw(Map<String, Object> map);
 }

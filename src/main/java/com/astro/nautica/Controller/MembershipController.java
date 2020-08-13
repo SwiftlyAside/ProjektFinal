@@ -49,4 +49,8 @@ public class MembershipController {
         return iMembershipService.findId(email);
     }
 
+    @RequestMapping("/changePw")
+    public boolean changePw(@RequestParam("data") String data, @RequestParam("pw") String pw, @RequestParam("pwOk") String pwOk) {
+        return iMembershipService.changePw(data, pw, pwOk);
+    }
 }
