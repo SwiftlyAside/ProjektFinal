@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div class='top'>
-		<%@ include file="common/top.jspf"%>
+		<%@ include file="/WEB-INF/jsp/common/top.jspf"%>
 	</div>
 	<span class='myPageForm-left'> 
 		<%@ include file="userManagement/userMenu.jsp"%>
