@@ -5,6 +5,9 @@
       color="primary"
       dark
     >
+      <v-btn @click="fetchData"/>
+      <v-btn @click="setSessionStorage">세션 세팅</v-btn>
+
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -14,7 +17,7 @@
           transition="scale-transition"
           width="40"
         />
-
+        <h1 v-if="man.length > 0">{{ man[5].categoryName }}</h1>
         <v-img
           alt="Vuetify Name"
           class="shrink mt-1 hidden-sm-and-down"
@@ -44,7 +47,8 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import axios from 'axios';
+import HelloWorld from './components/HelloWorld.vue';
 
 export default {
   name: 'App',
@@ -53,8 +57,24 @@ export default {
     HelloWorld,
   },
 
-  data: () => ({
-    //
-  }),
+  data() {
+    return {
+      man: '',
+    };
+  },
+  methods: {
+    setSessionStorage() {
+      sessionStorage.setItem('value', 'SSD');
+    },
+    fetchData() {
+      axios.get('/product/getCategories')
+        .then((response) => {
+          this.man = response.data;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
 };
 </script>
