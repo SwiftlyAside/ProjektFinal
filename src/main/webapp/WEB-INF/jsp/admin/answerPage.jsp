@@ -13,11 +13,8 @@
 </div>
 <p>
 <div>
-    <div id="1" onclick="show(event)">문의 1</div>
-    <div id="question_1" style="display: none">
-        숨겨진 내용 나타내기, ↓아래는 ajax
-        <span id="detail_1"></span>
-    </div>
+    <div id="1" onclick="show(event)">문의! Click Me!</div>
+    <div id="detail_1" style="display: none"></div>
     <hr>
     <div id="2"></div>
     <div id="3"></div>
@@ -25,7 +22,7 @@
 
 <script>
     function show(event) {
-      let target = document.getElementById('question_' + event.target.id);
+      let target = document.getElementById('detail_' + event.target.id);
       if (target.style.display === 'none') {
         target.style.display = 'inline';
         detail(event.target.id);
@@ -35,7 +32,7 @@
 
     function detail(id) {
       let xlr = new XMLHttpRequest();
-      xlr.open('GET', '${home}admin/detail?questionNo=' + id);
+      xlr.open('GET', '${home}admin/detail?inquireId=' + id);
       xlr.onreadystatechange = () => {
         if (xlr.status === 200 && xlr.readyState === 4) {
           let target = document.getElementById('detail_' + id);
@@ -44,4 +41,16 @@
       }
       xlr.send();
     }
+
+    (function () {
+      let xlr = new XMLHttpRequest();
+      xlr.open('GET', '${home}admin/showAll');
+      xlr.onreadystatechange = () => {
+        if (xlr.status === 200 && xlr.readyState === 4){
+          let target = document.getElementById('1');
+          target.innerHTML += xlr.responseText;
+        }
+      }
+      xlr.send();
+    })();
 </script>

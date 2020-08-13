@@ -51,15 +51,7 @@ public class PageController {
 
 	//admin page mapping
 	@RequestMapping(value = "/admin/{path}")
-	public String adminPath(Model model, @PathVariable String path, @RequestParam(value = "questionNo", required = false) String questionNo) {
-
-		// For detail answer page
-		// 1. Add if sentence
-		// 2. Add RequestParam for searching question no
-		if ("detail".contentEquals(path)) {
-			model.addAttribute("questionNo", questionNo);
-			return "admin/detailAnswerPage";
-		}
+	public String adminPath(Model model, @PathVariable String path) {
 		model.addAttribute("path", "form/" + path);
 		return "adminPage";
 	}
