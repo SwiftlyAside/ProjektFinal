@@ -2,32 +2,49 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:url var="home" value='/' />
-<div id='cart'>
-	<h2>ShoppingCart Page</h2>
-</div>
+<form id='frmCart' action='${home }buy/gotoPay'>
+	<div id='cart'>
+		<h2>ShoppingCart Page</h2>
+	</div>
+	<div><button id='gotopayBtn'>구매</button></div>
+</form>
 <script>
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '${home}member/cartInfo');
-	xhr.onreadystatechange = function(){
-		if(xhr.status == 200 && xhr.readyState == 4){
-			var str = xhr.responseText;
-			var json = JSON.parse(str);
-			var bmpage = document.getElementById('cart');
-			for(var i=0;i<json.length;i++){
-				bmpage.innerHTML += "<div id='" + json[i].productId + "'></div>";
-				var div = document.getElementById(json[i].productId);
-				div.innerHTML = "<span><img alt='' src=''></span>"
-					+ "<span><label id='pname" + json[i].productId + "'></label><br/>"
-					+ "<label id='pprice" + json[i].productId + "'></label><br/>"
-					+ "<button id='btn" + json[i].productId + "'>선물하기</button></span>";
-					
-				var pname = document.getElementById('pname' + json[i].productId);
-				var pprice = document.getElementById('pprice' + json[i].productId);
-				pname.innerHTML = '<b>' + json[i].productName + '</b>';
-				pprice.innerHTML = json[i].productPrice;
-			}
-			
+	var lst = [];
+	var map = {};
+	map.id = '001';
+	map.name = '마티스';
+	map.price = '299,000';
+	lst.push(map);
+	map = {};
+	map.id = '002';
+	map.name = '마티스2';
+	map.price = '199,000';
+	lst.push(map);
+	localStorage.setItem('shoppingCart', JSON.stringify(lst));
+	
+	
+	var cart = document.getElementById('cart');
+	var shoppingCart = JSON.parse(localStorage.getItem('shoppingCart'));
+	
+	for(var i=0;i<shoppingCart.length;i++){
+		cart.innerHTML += "<div id='" + shoppingCart[i].id + "'></div>";
+		var div = document.getElementById(shoppingCart[i].id);
+		div.innerHTML = "<span><img alt='' src=''></span>"
+			+ "<span><label id='pname" + shoppingCart[i].id + "'></label><br/>"
+			+ "<label id='pprice" + shoppingCart[i].id + "'></label><br/>"
+			+ "<button id='btn" + shoppingCart[i].id + "'>선물하기</button></span>";
+		var pname = document.getElementById('pname' + shoppingCart[i].id);
+		var pprice = document.getElementById('pprice' + shoppingCart[i].id);
+		pname.innerHTML = '<b>' + shoppingCart[i].name + '</b>';
+		pprice.innerHTML = shoppingCart[i].price;
+	}
+	function deleteCartLst(btnId){
+		
+	}
+	function gotoPay(){
+		var btn = document.getElementById('gotopayBtn');
+		btn.onclick = function(){
+			frm.submit();
 		}
-	};
-	xhr.send();
+	}
 </script>

@@ -25,6 +25,7 @@ public class PageController {
 		pathMap.put("inquireInfo", "userManagement/userInquireForm");
 		pathMap.put("reviewInfo", "userManagement/userReviewForm");
 		pathMap.put("shoppingCart", "membership/userCart");
+		pathMap.put("gotoPay", "buy/payPage");
 	}
 	//index
 	@RequestMapping(value = "/")
@@ -45,6 +46,12 @@ public class PageController {
 		System.out.println("userPage? : " + path);
 		model.addAttribute("path", "form/" + path);
 		return "userIndex";
+	}
+	
+	//buy
+	@RequestMapping(value = "/buy/{path}")
+	public String buyPath(@PathVariable String path) {
+		return pathMap.get(path);
 	}
 
 	@RequestMapping(value = "/form/{path}")
