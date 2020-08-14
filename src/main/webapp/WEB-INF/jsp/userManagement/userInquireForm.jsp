@@ -3,25 +3,73 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:url var="home" value="/" />
 <div>
-	<div>
-		<span>문의 내용</span>
-	</div>
-	<div>
-		<span>
-			<button id='insertInquire'>문의 하기</button>
-			<button id='deleteInquire'>삭제 하기</button>
-		</span>
-	</div>
-	<%-- <c:if test="${inquireCnt ne ''}">
-		<c:set var="cnt" value="1" />
-		<c:forEach var="inquireCnt" items="${inquireCnt }">
-			<c:set var="cnt" value="${i + 1 }" /> --%>
-			<div>
-				<a href="${home }user/insertInquire"><button>
-					<!-- <p>${writeday} ${productName}상품에 대한 문의내용입니다.</p> -->
-					<p>2020-08-12 OOO상품에 대한 문의내용입니다.</p>
-				</button></a>
-			</div>
-		<%-- </c:forEach>
-	</c:if> --%>
+	<h3>문의 내용</h3>
+	<table>
+		<tr>
+			<td>
+				<button id='insertInquire'>문의 하기</button>
+			</td>
+			<td>
+				<button id='deleteInquire'>삭제 하기</button>
+			</td>
+		</tr>
+	</table>
+	<div id='inquireList'></div>
 </div>
+<script>
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', '${home}userInquire/orderProduct');
+	xhr.onreadystatechange = function(){
+		if(xhr.status == 200 && xhr.readyState == 4){
+			var str = xhr.responseText;
+			var json = JSON.parse(str);
+			var bmpage = document.getElementById('inquireList');
+			for(var i=0;i<json.length;i++){
+				bmpage.innerHTML += "<div id='" + json[i].inquireId
+				 + "' onclick='clickList(" + json[i].inquireId +");'></div>"
+				 + "<div id='detail_" + json[i].inquireId + "' style='display: none;'></div>";
+				 
+				var div = document.getElementById(json[i].inquireId);
+				div.innerHTML = "<b>" + json[i].title + "</b>";
+			}
+		}
+	};
+	xhr.send();
+	
+	function clickList(inquireId){
+		var divContent = document.getElementById('detail_' + inquireId);
+		if(divContent.style.display == 'none'){
+			divContent.style.display = 'inline';
+			getDetail(inquireId);
+		}else{
+			divContent.style.display = 'none';
+		}
+	}
+	function getDetail(inquireId){
+		var xhr2 = new XMLHttpRequest();
+		xhr2.open('GET', '${home}userInquire/getDetail?inquireId=' + inquireId);
+		xhr2.onreadystatechange = function(){
+			if(xhr2.status == 200 && xhr2.readyState == 4){
+				var str = xhr.responseText;
+				var json = JSON.parse(str);
+				var divContent = document.getElementById('detail_' + inquireId);
+				divContent.innerHTML = "<div style='border: 1px solid'>"
+			    					 + "<div>"
+		       						 + "<span>" + json[0].title + "</span>"
+		       						 + "<span>" + json[0].writeDate + "</span>"
+		   							 + "</div>"
+		    						 + "<div>"
+		        					 + "<textarea name='' id='' cols='30' rows='10' readonly>" + json[0].content + "</textarea>"
+		  							 + "</div>"
+		   							 + "<div>"
+		       						 + "<textarea name='' id='' cols='30' rows='10'>" + json[0].answer + "</textarea>"
+		   							 + "</div>"
+		   							 + "<div>"
+		       						 + "<button>답변하기</button>"
+		   							 + "</div>"
+									 + "</div>";
+			}
+		};
+		xhr2.send();
+	}
+</script>

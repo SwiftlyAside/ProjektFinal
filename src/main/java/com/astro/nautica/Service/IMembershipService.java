@@ -1,8 +1,10 @@
 package com.astro.nautica.Service;
 
 import com.astro.nautica.VO.MemberVO;
+import com.astro.nautica.VO.ProductVO;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import java.util.List;
 import java.util.Map;
 
 public interface IMembershipService {
@@ -20,4 +22,7 @@ public interface IMembershipService {
 
     // 회원가입
     boolean makeMember(MemberVO memberVO);
+
+    List<ProductVO> BookmarkList(Map<String, Object> usrInfo);
+
 }

@@ -1,24 +1,33 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-<div class='bookmark'>
+<c:url var="home" value='/' />
+<div id='bookmark'>
 	<h2>bookmark page~</h2>
-	<c:if test="${bookmarkCnt ne ''}">
-	<c:set var="cnt" value="1" />
-		<c:forEach var="bookmarkCnt" items="${bookmarkLst }">
-			<c:set var="cnt" value="${i + 1 }" />
-			<div id='${productId }'>
-				<span>
-					<img alt="" src="">
-				</span>
-				<span>
-					<label><b>${productName }</b></label><br/>
-					<label>${productPrice }</label><br/>
-					<button id='btn${productId }'>선물하기</button>
-				</span>
-			</div>
-			<c:if test="${cnt % 2 == 0 }"><br/></c:if>
-		</c:forEach>
-	</c:if>
 </div>
+<script>
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', '${home}member/bookmarkInfo');
+	xhr.onreadystatechange = function(){
+		if(xhr.status == 200 && xhr.readyState == 4){
+			var str = xhr.responseText;
+			var json = JSON.parse(str);
+			var bmpage = document.getElementById('bookmark');
+			for(var i=0;i<json.length;i++){
+				bmpage.innerHTML += "<div id='" + json[i].pid + "'></div>";
+				var div = document.getElementById(json[i].pid);
+				div.innerHTML = "<span><img alt='' src=''></span>"
+					+ "<span><label id='pname" + json[i].pid + "'></label><br/>"
+					+ "<label id='pprice" + json[i].pid + "'></label><br/>"
+					+ "<button id='btn" + json[i].pid + "'>선물하기</button></span>";
+					
+				var pname = document.getElementById('pname' + json[i].pid);
+				var pprice = document.getElementById('pprice' + json[i].pid);
+				pname.innerHTML = '<b>' + json[i].productName + '</b>';
+				pprice.innerHTML = json[i].price;
+			}
+			
+		}
+	};
+	xhr.send();
+</script>

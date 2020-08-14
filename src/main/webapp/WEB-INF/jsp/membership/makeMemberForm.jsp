@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="home" value="/"/>
 <div class='container'>
-	<form action="${home}member/makeMember" method="post">
+	<form>
 		<div class='row'>
 			<input type='text' value='아이디' readonly /><br/>
 			<input type='text' name='id' />

@@ -17,11 +17,21 @@
         WHERE EMAIL = #{email}
     </select>
     <update id="changePw" parameterType="Map">
-        UPDATE MEMBER SET PW = #{pw}
-        WHERE ID = #{data} OR EMAIL = #{data}
+        UPDATE MEMBER
+        SET PW = #{pw}
+        WHERE ID = #{data}
+           OR EMAIL = #{data}
     </update>
     <insert id="makeMember" parameterType="MemberVO">
         INSERT INTO MEMBER
         VALUES (#{id}, #{pw}, #{name}, #{email})
     </insert>
+    <select id="BookmarkList" parameterType="String" resultType="com.astro.nautica.VO.ProductVO">
+        select p.pId, productName, price, ProductImage
+        from product p,
+             bookmarks b
+        where p.pid = b.pid
+          and userId = #{userId}
+    </select>
 </mapper>
+

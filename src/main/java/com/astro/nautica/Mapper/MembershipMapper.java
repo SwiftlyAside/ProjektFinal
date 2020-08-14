@@ -1,14 +1,18 @@
 package com.astro.nautica.Mapper;
 
 import com.astro.nautica.VO.MemberVO;
+import com.astro.nautica.VO.ProductVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Map;
 
 @Repository
 @Mapper
 public interface MembershipMapper {
+    List<ProductVO> BookmarkList(String userId);
+
     // id 존재 확인
     int isExistId(String id);
 
