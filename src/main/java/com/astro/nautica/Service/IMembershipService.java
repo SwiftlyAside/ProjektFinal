@@ -1,9 +1,11 @@
 package com.astro.nautica.Service;
 
+import java.util.List;
 import com.astro.nautica.VO.MemberVO;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.Map;
+import com.astro.nautica.VO.ProductVO;
 
 public interface IMembershipService {
     // id 존재 확인
@@ -20,4 +22,7 @@ public interface IMembershipService {
 
     // 회원가입
     boolean makeMember(MemberVO memberVO);
+
+    List<ProductVO> BookmarkList(Map<String, Object> usrInfo);
+
 }

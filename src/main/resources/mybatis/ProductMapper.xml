@@ -15,12 +15,12 @@
         FROM PRODUCT
         WHERE PRODUCTNAME = #{productName}
     </select>
-    <select id="getCategoryDetails" parameterType="String" resultType="CategoryDetailsVO">
+    <select id="getCategoryDetails" parameterType="String" resultType="com.astro.nautica.VO.CategoryDetailsVO">
         SELECT DETAILID, CATEGORYID, DETAIL
         FROM CATEGORYDETAILS
         WHERE CATEGORYID = #{categoryId}
     </select>
-    <insert id="addProduct" parameterType="ProductVO">
+    <insert id="addProduct" parameterType="com.astro.nautica.VO.ProductVO">
         INSERT INTO PRODUCT(PID, CATEGORYID, PRODUCTIMAGE, PRODUCTNAME, EA, PRICE, SALERATE)
         VALUES (#{pid}, #{categoryId}, #{productImage}, #{productName}, #{ea}, #{price}, #{saleRate})
     </insert>

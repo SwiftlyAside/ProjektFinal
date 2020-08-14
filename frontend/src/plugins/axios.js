@@ -12,18 +12,14 @@ const config = {
   // withCredentials: true, // Check cross-site Access-Control
 };
 
-// eslint-disable-next-line no-underscore-dangle
 const _axios = axios.create(config);
 
 _axios.interceptors.request.use(
-  // eslint-disable-next-line no-shadow
   (config) =>
     // Do something before request is sent
-    // eslint-disable-next-line implicit-arrow-linebreak
     config,
   (error) =>
     // Do something with request error
-    // eslint-disable-next-line implicit-arrow-linebreak
     Promise.reject(error),
 
 );
@@ -32,18 +28,14 @@ _axios.interceptors.request.use(
 _axios.interceptors.response.use(
   (response) =>
     // Do something with response data
-    // eslint-disable-next-line implicit-arrow-linebreak
     response,
   (error) =>
     // Do something with response error
-    // eslint-disable-next-line implicit-arrow-linebreak
     Promise.reject(error),
 
 );
 
-// eslint-disable-next-line no-shadow,no-unused-vars,func-names
 Plugin.install = function (Vue, options) {
-  // eslint-disable-next-line no-param-reassign
   Vue.axios = _axios;
   window.axios = _axios;
   Object.defineProperties(Vue.prototype, {

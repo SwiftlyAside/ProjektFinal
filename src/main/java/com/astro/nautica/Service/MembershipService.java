@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import java.util.HashMap;
 import java.util.Map;
 
+import java.util.List;
+import com.astro.nautica.VO.ProductVO;
+
 @Service
 public class MembershipService implements IMembershipService {
 
@@ -56,4 +59,10 @@ public class MembershipService implements IMembershipService {
     public boolean makeMember(MemberVO memberVO) {
         return membershipMapper.makeMember(memberVO);
     }
+
+	@Override
+	public List<ProductVO> BookmarkList(Map<String, Object> usrInfo) {
+		usrInfo.put("id", "lee123");
+		return membershipMapper.BookmarkList(String.valueOf(usrInfo.get("id")));
+	}
 }

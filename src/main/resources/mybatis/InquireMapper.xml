@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.astro.nautica.Mapper.InquireMapper">
-    <select id="selectInquiresList" resultType="InquireVO">
+    <select id="selectInquiresList" resultType="com.astro.nautica.VO.InquireVO">
         SELECT INQUIREID, USERID, TITLE
         FROM INQUIRE
         Order By INQUIREID
     </select>
 
-    <select id="getInquire" resultType="InquireVO" parameterType="int">
+    <select id="getInquire" resultType="com.astro.nautica.VO.InquireVO" parameterType="int">
         SELECT *
         FROM INQUIRE
         WHERE INQUIREID = #{inquireId}

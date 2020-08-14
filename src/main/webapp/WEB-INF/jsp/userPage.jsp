@@ -14,7 +14,7 @@
 		<tr>
 			<td class='myPageForm-left'>
 				<span>
-					<%@ include file="userManagement/userMenu.jsp"%>
+					<%@ include file="/WEB-INF/jsp/userManagement/userMenu.jsp"%>
 				</span>
 			</td>
 			<td class='myPageForm-right'>
