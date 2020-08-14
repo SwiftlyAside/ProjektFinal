@@ -23,6 +23,11 @@ const routes = [
     name: 'Login',
     component: () => import('../views/Membership'),
   },
+  {
+    path: '/member/findMember',
+    name: 'FindMember',
+    component: () => import('../views/membership/findMember'),
+  },
 ];
 
 const router = new VueRouter({
