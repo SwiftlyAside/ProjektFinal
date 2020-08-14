@@ -46,23 +46,24 @@
 		}
 	}
 	function getDetail(inquireId){
-		var xhr2 = new XMLHttpRequest();
-		xhr2.open('GET', '${home}userInquire/getDetail?inquireId=' + inquireId);
-		xhr2.onreadystatechange = function(){
-			if(xhr2.status == 200 && xhr2.readyState == 4){
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', '${home}userInquire/getDetail?inquireId=' + inquireId);
+		xhr.onreadystatechange = function(){
+			if(xhr.status == 200 && xhr.readyState == 4){
 				var str = xhr.responseText;
 				var json = JSON.parse(str);
+				console.log(json);
 				var divContent = document.getElementById('detail_' + inquireId);
 				divContent.innerHTML = "<div style='border: 1px solid'>"
 			    					 + "<div>"
-		       						 + "<span>" + json[0].title + "</span>"
-		       						 + "<span>" + json[0].writeDate + "</span>"
+		       						 + "<span>" + json.title + "</span>"
+		       						 + "<span>" + json.writeDate + "</span>"
 		   							 + "</div>"
 		    						 + "<div>"
-		        					 + "<textarea name='' id='' cols='30' rows='10'>" + json[0].content + "</textarea>"
+		        					 + "<textarea name='' id='' cols='30' rows='10'>" + json.content + "</textarea>"
 		  							 + "</div>"
 		   							 + "<div>"
-		       						 + "<textarea name='' id='' cols='30' rows='10' readonly>" + json[0].answer + "</textarea>"
+		       						 + "<textarea name='' id='' cols='30' rows='10' readonly>" + json.answer + "</textarea>"
 		   							 + "</div>"
 		   							 + "<div>"
 		       						 + "<button>답변하기</button>"
@@ -70,6 +71,6 @@
 									 + "</div>";
 			}
 		};
-		xhr2.send();
+		xhr.send();
 	}
 </script>
