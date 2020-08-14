@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.astro.nautica.Mapper.MembershipMapper">
+    <select id="isExistId" resultType="int" parameterType="String">
+        SELECT COUNT(ID)
+        FROM MEMBER
+        WHERE ID = #{id}
+    </select>
+    <select id="login" resultType="MemberVO">
+        SELECT ID, PW
+        FROM MEMBER
+        WHERE ID = #{id}
+    </select>
+    <select id="findId" resultType="String" parameterType="String">
+        SELECT ID
+        FROM MEMBER
+        WHERE EMAIL = #{email}
+    </select>
+    <update id="changePw" parameterType="Map">
+        UPDATE MEMBER SET PW = #{pw}
+        WHERE ID = #{data} OR EMAIL = #{data}
+    </update>
+    <insert id="makeMember" parameterType="MemberVO">
+        INSERT INTO MEMBER
+        VALUES (#{id}, #{pw}, #{name}, #{email})
+    </insert>
     <select id="BookmarkList" parameterType="String" resultType="com.astro.nautica.VO.ProductVO">
     	select p.pId, productName, price, ProductImage
-    	from product p, bookmarks b 
+    	from product p, bookmarks b
     	where p.pid = b.pid and userId = #{userId}
     </select>
 </mapper>
