@@ -18,7 +18,7 @@
 </div>
 <script>
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '${home}myPage/orderProduct');
+	xhr.open('GET', '${home}myPage/inquireInfo');
 	xhr.onreadystatechange = function(){
 		if(xhr.status == 200 && xhr.readyState == 4){
 			var str = xhr.responseText;

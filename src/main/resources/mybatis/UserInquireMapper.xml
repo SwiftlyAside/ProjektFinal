@@ -22,4 +22,15 @@
         where p.pid = b.pid
           and userId = #{userId}
     </select>
+    
+    <select id="selectUserReviewList" resultType="com.astro.nautica.VO.ProductReviewVO" parameterType="String">
+    	select * from PRODUCTREVIEW 
+    	where userId = #{userId}
+    </select>
+    
+    <select id="getUserReview" resultType="com.astro.nautica.VO.ProductReviewVO" parameterType="Map">
+    	select * from PRODUCTREVIEW 
+    	where userId = #{userId}
+    	and reviewId = #{reviewId}
+    </select>
 </mapper>

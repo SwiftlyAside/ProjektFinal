@@ -1,59 +1,72 @@
 package com.astro.nautica.VO;
 
+import java.sql.Timestamp;
+
 //제품 리뷰
 public class ProductReviewVO {
-	// 리뷰 식별자 generated as identity
-	private int reviewid;
+	    // 리뷰 식별자 generated as identity
+	    private int reviewid;
 
-	// 제품 식별자 on delete cascade
-	private String pid;
+	    // 제품 식별자 on delete cascade
+	    private String pid;
 
-	// 아이디 on delete cascade
-	private String userid;
+	    // 아이디 on delete cascade
+	    private String userid;
 
-	// 평점
-	private String grade;
+	    // 평점 
+	    private String grade;
 
-	// 내용
-	private String content;
+	    // 내용 
+	    private String content;
 
-	public int getReviewid() {
-		return reviewid;
-	}
+	    // 작성 날짜 
+	    private Timestamp writedate;
 
-	public void setReviewid(int reviewid) {
-		this.reviewid = reviewid;
-	}
+	    public int getReviewid() {
+	        return reviewid;
+	    }
 
-	public String getPid() {
-		return pid;
-	}
+	    public void setReviewid(int reviewid) {
+	        this.reviewid = reviewid;
+	    }
 
-	public void setPid(String pid) {
-		this.pid = pid;
-	}
+	    public String getPid() {
+	        return pid;
+	    }
 
-	public String getUserid() {
-		return userid;
-	}
+	    public void setPid(String pid) {
+	        this.pid = pid;
+	    }
 
-	public void setUserid(String userid) {
-		this.userid = userid;
-	}
+	    public String getUserid() {
+	        return userid;
+	    }
 
-	public String getGrade() {
-		return grade;
-	}
+	    public void setUserid(String userid) {
+	        this.userid = userid;
+	    }
 
-	public void setGrade(String grade) {
-		this.grade = grade;
-	}
+	    public String getGrade() {
+	        return grade;
+	    }
 
-	public String getContent() {
-		return content;
-	}
+	    public void setGrade(String grade) {
+	        this.grade = grade;
+	    }
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+	    public String getContent() {
+	        return content;
+	    }
+
+	    public void setContent(String content) {
+	        this.content = content;
+	    }
+
+	    public Timestamp getWritedate() {
+	        return writedate;
+	    }
+
+	    public void setWritedate(Timestamp writedate) {
+	        this.writedate = writedate;
+	    }
 }
