@@ -25,16 +25,6 @@ public class MembershipController {
         return new HashMap<>();
     }
 
-
-    @GetMapping("/bookmarkInfo")
-    public Map<String, String> bookmarkLst() {
-        Map<String, String> bookmarkCnt = new HashMap<>();
-        bookmarkCnt.put("productId", "001");
-        bookmarkCnt.put("productName", "마티스");
-        bookmarkCnt.put("productPrice", "1000");
-        return bookmarkCnt;
-    }
-
     @RequestMapping("/isExist")
     public int isExist(@RequestParam("id") String id) {
        return iMembershipService.isExistId(id);
