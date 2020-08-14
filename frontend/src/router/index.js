@@ -34,6 +34,11 @@ const routes = [
     name: 'ProductInfo',
     component: () => import('../views/ProductInfo'),
   },
+  {
+    path: '/member/findMember',
+    name: 'FindMember',
+    component: () => import('../views/membership/findMember'),
+  },
 ];
 
 const router = new VueRouter({
