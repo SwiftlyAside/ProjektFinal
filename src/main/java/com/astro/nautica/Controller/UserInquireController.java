@@ -39,8 +39,6 @@ public class UserInquireController {
 	@RequestMapping("getDetail")
 	public InquireVO getDetail(@RequestParam("inquireId") int inquireId, 
 				@ModelAttribute("userInfo") Map<String, Object> usrInfo) {
-		InquireVO inquire = userinquireservice.getInquire(inquireId, usrInfo);
-		System.out.println(inquire);
-		return inquire;
+		return userinquireservice.getInquire(inquireId, usrInfo);
 	}
 }
