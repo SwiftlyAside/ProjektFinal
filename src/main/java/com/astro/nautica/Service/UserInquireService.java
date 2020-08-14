@@ -5,14 +5,20 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.astro.nautica.Mapper.UserInquireMapper;
 import com.astro.nautica.VO.InquireVO;
 
+@Service
 public class UserInquireService implements IUserInquireService {
 
 	private final UserInquireMapper userinquiremapper;
 	
+	public UserInquireService() {
+		this.userinquiremapper = null;
+		// TODO Auto-generated constructor stub
+	}
 	@Autowired
 	public UserInquireService(UserInquireMapper userinquiremapper) {
 		this.userinquiremapper = userinquiremapper;
@@ -20,7 +26,10 @@ public class UserInquireService implements IUserInquireService {
 	
 	@Override
 	public List<InquireVO> selectInquiresList(Map<String, Object> usrInfo) {
-		return userinquiremapper.selectInquiresList(String.valueOf(usrInfo.get("id")));
+		//testcode
+		usrInfo.put("id", "lee123");
+		
+		return userinquiremapper.selectUserInquiresList(String.valueOf(usrInfo.get("id")));
 	}
 
 	@Override
@@ -28,7 +37,7 @@ public class UserInquireService implements IUserInquireService {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("inquireId", inquireId);
 		map.put("userId", String.valueOf(usrInfo.get("id")));
-		return userinquiremapper.getInquire(map);
+		return userinquiremapper.getUserInquire(map);
 	}
 
 }

@@ -23,7 +23,7 @@
 		if(xhr.status == 200 && xhr.readyState == 4){
 			var str = xhr.responseText;
 			var json = JSON.parse(str);
-			var bmpage = document.getElementById('orderProduct');
+			var bmpage = document.getElementById('inquireList');
 			for(var i=0;i<json.length;i++){
 				bmpage.innerHTML += "<div id='" + json[i].inquireId
 				 + "' onclick='clickList(" + json[i].inquireId +");'></div>"
@@ -35,6 +35,7 @@
 		}
 	};
 	xhr.send();
+	
 	function clickList(inquireId){
 		var divContent = document.getElementById('detail_' + inquireId);
 		if(divContent.style.display == 'none'){
@@ -45,24 +46,23 @@
 		}
 	}
 	function getDetail(inquireId){
-		var xhr = new XMLHttpRequest();
-		xhr.open('GET', '${home}userInquire/detail?inquireId=' + inquireId);
-		xhr.onreadystatechange = function(){
-			if(xhr.status == 200 && xhr.readyState == 4){
+		var xhr2 = new XMLHttpRequest();
+		xhr2.open('GET', '${home}userInquire/getDetail?inquireId=' + inquireId);
+		xhr2.onreadystatechange = function(){
+			if(xhr2.status == 200 && xhr2.readyState == 4){
 				var str = xhr.responseText;
 				var json = JSON.parse(str);
-				
 				var divContent = document.getElementById('detail_' + inquireId);
 				divContent.innerHTML = "<div style='border: 1px solid'>"
 			    					 + "<div>"
-		       						 + "<span>" + json.title + "</span>"
-		       						 + "<span>" + json.writeDate + "</span>"
+		       						 + "<span>" + json[0].title + "</span>"
+		       						 + "<span>" + json[0].writeDate + "</span>"
 		   							 + "</div>"
 		    						 + "<div>"
-		        					 + "<textarea name='' id='' cols='30' rows='10' readonly>" + json.content + "</textarea>"
+		        					 + "<textarea name='' id='' cols='30' rows='10' readonly>" + json[0].content + "</textarea>"
 		  							 + "</div>"
 		   							 + "<div>"
-		       						 + "<textarea name='' id='' cols='30' rows='10'>" + json.answer + "</textarea>"
+		       						 + "<textarea name='' id='' cols='30' rows='10'>" + json[0].answer + "</textarea>"
 		   							 + "</div>"
 		   							 + "<div>"
 		       						 + "<button>답변하기</button>"
@@ -70,5 +70,6 @@
 									 + "</div>";
 			}
 		};
+		xhr2.send();
 	}
 </script>
