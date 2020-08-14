@@ -5,7 +5,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<div class='container'>
 		<h2>{{ message }}</h2>
-		<form>
+		<form action="${home}member/login" method="post">
 			<div class='row'>
 				<div class='col'>
 					<button class='btn' id='btnLoginAnonymous'>비회원으로 주문하기</button>
