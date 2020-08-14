@@ -23,6 +23,4 @@ public interface IMembershipService {
     // 회원가입
     boolean makeMember(MemberVO memberVO);
 
-    List<ProductVO> BookmarkList(Map<String, Object> usrInfo);
-
 }

@@ -47,7 +47,6 @@ public class PageController {
 	//userManagement
 	@RequestMapping(value = "/user/{path}")
 	public String userPath(Model model, @PathVariable String path) {
-		System.out.println("userPage? : " + path);
 		model.addAttribute("path", "form/" + path);
 		return "userPage";
 	}
@@ -67,7 +66,6 @@ public class PageController {
 
 	@RequestMapping(value = "/form/{path}")
 	public String formPath(@PathVariable String path) {
-		System.out.println("form? : " + path);
 		return pathMap.get(path);
 	}
 	

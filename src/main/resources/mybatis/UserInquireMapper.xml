@@ -14,4 +14,23 @@
         WHERE INQUIREID = #{inquireId}
         AND USERID = #{userId}
     </select>
+    
+    <select id="BookmarkList" parameterType="String" resultType="com.astro.nautica.VO.ProductVO">
+        select p.pId, productName, price, ProductImage
+        from product p,
+             bookmarks b
+        where p.pid = b.pid
+          and userId = #{userId}
+    </select>
+    
+    <select id="selectUserReviewList" resultType="com.astro.nautica.VO.ProductReviewVO" parameterType="String">
+    	select * from PRODUCTREVIEW 
+    	where userId = #{userId}
+    </select>
+    
+    <select id="getUserReview" resultType="com.astro.nautica.VO.ProductReviewVO" parameterType="Map">
+    	select * from PRODUCTREVIEW 
+    	where userId = #{userId}
+    	and reviewId = #{reviewId}
+    </select>
 </mapper>
