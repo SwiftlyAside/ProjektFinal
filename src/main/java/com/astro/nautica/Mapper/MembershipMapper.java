@@ -11,8 +11,7 @@ import java.util.Map;
 @Repository
 @Mapper
 public interface MembershipMapper {
-    List<ProductVO> BookmarkList(String userId);
-
+    
     // id 존재 확인
     int isExistId(String id);
 

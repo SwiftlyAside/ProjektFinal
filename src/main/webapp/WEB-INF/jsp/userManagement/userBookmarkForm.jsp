@@ -7,7 +7,7 @@
 </div>
 <script>
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '${home}member/bookmarkInfo');
+	xhr.open('GET', '${home}myPage/bookmarkInfo');
 	xhr.onreadystatechange = function(){
 		if(xhr.status == 200 && xhr.readyState == 4){
 			var str = xhr.responseText;
