@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import './plugins/axios';
-import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
-import App from './App.vue';
+// import './@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
+import App from './App1.vue';
 import vuetify from './plugins/vuetify';
 
 Vue.config.productionTip = false;
