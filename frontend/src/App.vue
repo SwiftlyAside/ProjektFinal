@@ -3,19 +3,36 @@
     <v-app-bar
       app
       clipped-left
-      color="amber"
     >
       <v-app-bar-nav-icon @click="drawer = !drawer" />
-      <span class="title ml-3 mr-5">Google&nbsp;<span class="font-weight-light">Keep</span></span>
+      <v-btn
+        text
+        to="/"
+        class="title ml-3 mr-5"
+      >
+        Acorn&nbsp;전자상가
+      </v-btn>
       <v-text-field
-        solo-inverted
         flat
         hide-details
-        label="Search"
+        label="상품 검색"
         prepend-inner-icon="search"
+        solo-inverted
       />
 
       <v-spacer />
+      <v-btn text>
+        마이페이지
+      </v-btn>
+      <v-btn text>
+        장바구니
+      </v-btn>
+      <v-btn
+        text
+        to="/login"
+      >
+        로그인
+      </v-btn>
     </v-app-bar>
 
     <v-navigation-drawer
@@ -25,8 +42,8 @@
       color="grey lighten-4"
     >
       <v-list
-        dense
         class="grey lighten-4"
+        dense
       >
         <template v-for="(item, i) in items">
           <v-row
@@ -40,22 +57,35 @@
               </v-subheader>
             </v-col>
             <v-col
-              cols="6"
               class="text-right"
+              cols="6"
             >
               <v-btn
+                to="/product"
                 small
                 text
               >
-                edit
+                상품등록
+              </v-btn>
+            </v-col>
+            <v-col
+              class="text-right"
+              cols="6"
+            >
+              <v-btn
+                to="/productInfo"
+                small
+                text
+              >
+                상품 리스트
               </v-btn>
             </v-col>
           </v-row>
           <v-divider
             v-else-if="item.divider"
             :key="i"
-            dark
             class="my-4"
+            dark
           />
           <v-list-item
             v-else
@@ -76,43 +106,13 @@
     </v-navigation-drawer>
 
     <v-main>
-      <v-container
-        fluid
-        class="grey lighten-4 fill-height"
-      >
-        <v-row
-          justify="center"
-          align="center"
-        >
-          <v-col class="shrink">
-            <v-tooltip right>
-              <template v-slot:activator="{ on }">
-                <v-btn
-                  :href="source"
-                  icon
-                  large
-                  target="_blank"
-                  v-on="on"
-                >
-                  <v-icon large>
-                    mdi-code-tags
-                  </v-icon>
-                </v-btn>
-              </template>
-              <span>Source</span>
-            </v-tooltip>
-          </v-col>
-        </v-row>
-      </v-container>
+      <router-view />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import Vuetify from 'vuetify';
-
 export default {
-  vuetify: new Vuetify(),
   props: {
     source: String,
   },
@@ -139,7 +139,14 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+
 #keep .v-navigation-drawer__border {
   display: none
 }
+
+.application {
+  font-family: "Roboto", 'Nanum Gothic', sans-serif;
+}
+
 </style>

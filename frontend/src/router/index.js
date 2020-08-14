@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import goTo from 'vuetify/es5/services/goto';
 import Home from '../views/Home.vue';
 
 Vue.use(VueRouter);
@@ -23,9 +24,35 @@ const routes = [
     name: 'Login',
     component: () => import('../views/Membership'),
   },
+  {
+    path: '/product',
+    name: 'Product',
+    component: () => import('../views/Product'),
+  },
+  {
+    path: '/productInfo',
+    name: 'ProductInfo',
+    component: () => import('../views/ProductInfo'),
+  },
+  {
+    path: '/member/findMember',
+    name: 'FindMember',
+    component: () => import('../views/membership/findMember'),
+  },
 ];
 
 const router = new VueRouter({
+  scrollBehavior: (to, from, savedPosition) => {
+    let scrollTo = 0;
+
+    if (to.hash) {
+      scrollTo = to.hash;
+    } else if (savedPosition) {
+      scrollTo = savedPosition.y;
+    }
+
+    return goTo(scrollTo);
+  },
   routes,
 });
 
