@@ -5,24 +5,11 @@
       color="primary"
       dark
     >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+      <v-btn @click="fetchData">데이터 수신</v-btn>
+      <v-btn @click="setSessionStorage">세션 세팅</v-btn>
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
+      <div class="d-flex align-center">
+        <h1 v-if="man.length > 0">{{ man[5].categoryName }}</h1>
       </div>
 
       <v-spacer></v-spacer>
@@ -32,29 +19,46 @@
         target="_blank"
         text
       >
-        <span class="mr-2">Latest Release</span>
+        <span class="mr-2">마이페이지</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
 
     <v-main>
-      <HelloWorld/>
+      <product-info/>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import axios from 'axios';
+import ProductInfo from './components/ProductInfo.vue';
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
+    ProductInfo,
   },
 
-  data: () => ({
-    //
-  }),
+  data() {
+    return {
+      man: '',
+    };
+  },
+  methods: {
+    setSessionStorage() {
+      sessionStorage.setItem('value', 'SSD');
+    },
+    fetchData() {
+      axios.get('/product/getCategories')
+        .then((response) => {
+          this.man = response.data;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
 };
 </script>

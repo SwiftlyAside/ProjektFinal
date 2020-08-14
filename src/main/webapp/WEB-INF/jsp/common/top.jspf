@@ -8,7 +8,7 @@
 		<a href='${root }user/userHome'><button class='btn'>마이페이지</button></a>
 	</span>
 	<span>
-		<a href='${root }shoppingCart'><button class='btn'>장바구니</button></a>
+		<a href='${root }local/shoppingCart'><button class='btn'>장바구니</button></a>
 	</span>
 	<span>
 		<a href='${root }local/login'><button class='btn'>로그인</button></a>

@@ -5,7 +5,9 @@ import com.astro.nautica.VO.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -24,15 +26,16 @@ public class MembershipController {
     public Map<String, Object> getSessionInfo() {
         return new HashMap<>();
     }
-
-
+  
     @GetMapping("/bookmarkInfo")
-    public Map<String, String> bookmarkLst() {
-        Map<String, String> bookmarkCnt = new HashMap<>();
-        bookmarkCnt.put("productId", "001");
-        bookmarkCnt.put("productName", "마티스");
-        bookmarkCnt.put("productPrice", "1000");
-        return bookmarkCnt;
+    public List<Map<String, String>> bookmarkLst() {
+    	List<Map<String, String>> lst = new ArrayList<Map<String,String>>();
+        bookmarkMap = new HashMap<>();
+        bookmarkMap.put("productId", "001");
+        bookmarkMap.put("productName", "마티스");
+        bookmarkMap.put("productPrice", "1000");
+        lst.add(bookmarkMap);
+        return lst;
     }
 
     @RequestMapping("/isExist")
