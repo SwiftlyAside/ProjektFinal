@@ -109,7 +109,10 @@
 </template>
 
 <script>
+import Vuetify from 'vuetify';
+
 export default {
+  vuetify: new Vuetify(),
   props: {
     source: String,
   },
