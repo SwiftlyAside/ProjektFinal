@@ -5,7 +5,7 @@
       clipped-left
       color="amber"
     >
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click="drawer = !drawer" />
       <span class="title ml-3 mr-5">Google&nbsp;<span class="font-weight-light">Keep</span></span>
       <v-text-field
         solo-inverted
@@ -13,9 +13,9 @@
         hide-details
         label="Search"
         prepend-inner-icon="search"
-      ></v-text-field>
+      />
 
-      <v-spacer></v-spacer>
+      <v-spacer />
     </v-app-bar>
 
     <v-navigation-drawer
@@ -46,7 +46,9 @@
               <v-btn
                 small
                 text
-              >edit</v-btn>
+              >
+                edit
+              </v-btn>
             </v-col>
           </v-row>
           <v-divider
@@ -54,7 +56,7 @@
             :key="i"
             dark
             class="my-4"
-          ></v-divider>
+          />
           <v-list-item
             v-else
             :key="i"
@@ -92,7 +94,9 @@
                   target="_blank"
                   v-on="on"
                 >
-                  <v-icon large>mdi-code-tags</v-icon>
+                  <v-icon large>
+                    mdi-code-tags
+                  </v-icon>
                 </v-btn>
               </template>
               <span>Source</span>
@@ -105,7 +109,10 @@
 </template>
 
 <script>
+import Vuetify from 'vuetify';
+
 export default {
+  vuetify: new Vuetify(),
   props: {
     source: String,
   },

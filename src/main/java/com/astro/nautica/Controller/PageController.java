@@ -26,6 +26,10 @@ public class PageController {
 		pathMap.put("reviewInfo", "userManagement/userReviewForm");
 		pathMap.put("shoppingCart", "membership/userCart");
 		pathMap.put("gotoPay", "buy/payPage");
+
+		pathMap.put("adminHome", "admin/adminHome");
+		pathMap.put("answerPage", "admin/answerPage");
+
 	}
 	//index
 	@RequestMapping(value = "/")
@@ -46,7 +50,14 @@ public class PageController {
 		model.addAttribute("path", "form/" + path);
 		return "userPage";
 	}
-	
+
+	//admin
+	@RequestMapping(value = "/admin/{path}")
+	public String adminPath(Model model, @PathVariable String path) {
+		model.addAttribute("path", "form/" + path);
+		return "adminPage";
+	}
+
 	//buy
 	@RequestMapping(value = "/buy/{path}")
 	public String buyPath(@PathVariable String path) {
