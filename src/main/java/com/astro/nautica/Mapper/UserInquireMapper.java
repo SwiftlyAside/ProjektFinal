@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.astro.nautica.VO.InquireVO;
+import com.astro.nautica.VO.ProductVO;
 
 @Repository
 @Mapper
@@ -16,4 +17,7 @@ public interface UserInquireMapper {
 	
 	// 아이디에 해당하는 선택된 문의를 InquireVO로 반환
 	InquireVO getUserInquire(Map<String, Object> map);
+	
+	List<ProductVO> BookmarkList(String userId);
+
 }

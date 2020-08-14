@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.astro.nautica.Mapper.UserInquireMapper;
 import com.astro.nautica.VO.InquireVO;
+import com.astro.nautica.VO.ProductVO;
 
 @Service
 public class UserInquireService implements IUserInquireService {
@@ -28,7 +29,7 @@ public class UserInquireService implements IUserInquireService {
 	public List<InquireVO> selectInquiresList(Map<String, Object> usrInfo) {
 		//testcode
 		usrInfo.put("id", "lee123");
-		
+		//--
 		return userinquiremapper.selectUserInquiresList(String.valueOf(usrInfo.get("id")));
 	}
 
@@ -39,5 +40,13 @@ public class UserInquireService implements IUserInquireService {
 		map.put("userId", String.valueOf(usrInfo.get("id")));
 		return userinquiremapper.getUserInquire(map);
 	}
+	
+    @Override
+    public List<ProductVO> BookmarkList(Map<String, Object> usrInfo) {
+    	//testcode
+        usrInfo.put("id", "lee123");
+        //--
+        return userinquiremapper.BookmarkList(String.valueOf(usrInfo.get("id")));
+    }
 
 }

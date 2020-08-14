@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.astro.nautica.Service.IUserInquireService;
 import com.astro.nautica.VO.InquireVO;
+import com.astro.nautica.VO.ProductVO;
 
+//이 컨트롤러의 이름을 변경요청합니다 - MyPageController
 @SessionAttributes("userInfo")
 @RestController
-@RequestMapping("userInquire")
+@RequestMapping("myPage")
 public class UserInquireController {
 
 	private final IUserInquireService userinquireservice;
@@ -41,4 +43,9 @@ public class UserInquireController {
 				@ModelAttribute("userInfo") Map<String, Object> usrInfo) {
 		return userinquireservice.getInquire(inquireId, usrInfo);
 	}
+	
+	@RequestMapping("bookmarkInfo")
+    public List<ProductVO> bookmarkInfo(@ModelAttribute("userInfo") Map<String, Object> usrInfo) {
+        return userinquireservice.BookmarkList(usrInfo);
+    }
 }

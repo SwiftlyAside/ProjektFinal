@@ -58,9 +58,4 @@ public class MembershipService implements IMembershipService {
         return membershipMapper.makeMember(memberVO);
     }
 
-    @Override
-    public List<ProductVO> BookmarkList(Map<String, Object> usrInfo) {
-        usrInfo.put("id", "lee123");
-        return membershipMapper.BookmarkList(String.valueOf(usrInfo.get("id")));
-    }
 }

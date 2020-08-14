@@ -18,7 +18,7 @@
 </div>
 <script>
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '${home}userInquire/orderProduct');
+	xhr.open('GET', '${home}myPage/orderProduct');
 	xhr.onreadystatechange = function(){
 		if(xhr.status == 200 && xhr.readyState == 4){
 			var str = xhr.responseText;
@@ -47,7 +47,7 @@
 	}
 	function getDetail(inquireId){
 		var xhr = new XMLHttpRequest();
-		xhr.open('GET', '${home}userInquire/getDetail?inquireId=' + inquireId);
+		xhr.open('GET', '${home}myPage/getDetail?inquireId=' + inquireId);
 		xhr.onreadystatechange = function(){
 			if(xhr.status == 200 && xhr.readyState == 4){
 				var str = xhr.responseText;
