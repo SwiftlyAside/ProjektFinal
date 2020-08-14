@@ -2,16 +2,14 @@ package com.astro.nautica.Service;
 
 import com.astro.nautica.Mapper.MembershipMapper;
 import com.astro.nautica.VO.MemberVO;
+import com.astro.nautica.VO.ProductVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.util.HashMap;
-import java.util.Map;
-
 import java.util.List;
-import com.astro.nautica.VO.ProductVO;
+import java.util.Map;
 
 @Service
 public class MembershipService implements IMembershipService {
@@ -31,8 +29,8 @@ public class MembershipService implements IMembershipService {
     @Override
     public boolean login(String id, String pw, @ModelAttribute("userInfo") Map<String, Object> userInfo) {
         if (this.isExistId(id) == 1 && pw.contentEquals(membershipMapper.login(id).getPw())) {
-                userInfo.put("id", id);
-                return true;
+            userInfo.put("id", id);
+            return true;
         }
         return false;
     }
@@ -60,9 +58,9 @@ public class MembershipService implements IMembershipService {
         return membershipMapper.makeMember(memberVO);
     }
 
-	@Override
-	public List<ProductVO> BookmarkList(Map<String, Object> usrInfo) {
-		usrInfo.put("id", "lee123");
-		return membershipMapper.BookmarkList(String.valueOf(usrInfo.get("id")));
-	}
+    @Override
+    public List<ProductVO> BookmarkList(Map<String, Object> usrInfo) {
+        usrInfo.put("id", "lee123");
+        return membershipMapper.BookmarkList(String.valueOf(usrInfo.get("id")));
+    }
 }
