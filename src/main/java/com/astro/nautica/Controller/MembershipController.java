@@ -26,11 +26,11 @@ public class MembershipController {
     public Map<String, Object> getSessionInfo() {
         return new HashMap<>();
     }
-  
+
     @GetMapping("/bookmarkInfo")
     public List<Map<String, String>> bookmarkLst() {
-    	List<Map<String, String>> lst = new ArrayList<Map<String,String>>();
-        bookmarkMap = new HashMap<>();
+        List<Map<String, String>> lst = new ArrayList<>();
+        Map<String, String> bookmarkMap = new HashMap<>();
         bookmarkMap.put("productId", "001");
         bookmarkMap.put("productName", "마티스");
         bookmarkMap.put("productPrice", "1000");
@@ -40,12 +40,12 @@ public class MembershipController {
 
     @RequestMapping("/isExist")
     public int isExist(@RequestParam("id") String id) {
-       return iMembershipService.isExistId(id);
+        return iMembershipService.isExistId(id);
     }
 
     @RequestMapping("/login")
-    public boolean login(@RequestParam("id") String id, @RequestParam("pw") String pw, @ModelAttribute("userInfo") Map<String, Object> userInfo)  {
-       return iMembershipService.login(id, pw, userInfo);
+    public boolean login(@RequestParam("id") String id, @RequestParam("pw") String pw, @ModelAttribute("userInfo") Map<String, Object> userInfo) {
+        return iMembershipService.login(id, pw, userInfo);
     }
 
     @RequestMapping("/findId")

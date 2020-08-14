@@ -1,64 +1,32 @@
 <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <v-btn @click="fetchData">데이터 수신</v-btn>
-      <v-btn @click="setSessionStorage">세션 세팅</v-btn>
-
-      <div class="d-flex align-center">
-        <h1 v-if="man.length > 0">{{ man[5].categoryName }}</h1>
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">마이페이지</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-main>
-      <product-info/>
-    </v-main>
-  </v-app>
+  <div id="app">
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </div>
+    <router-view/>
+  </div>
 </template>
 
-<script>
-import axios from 'axios';
-import ProductInfo from './components/ProductInfo.vue';
+<style lang="scss">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
 
-export default {
-  name: 'App',
+#nav {
+  padding: 30px;
 
-  components: {
-    ProductInfo,
-  },
+  a {
+    font-weight: bold;
+    color: #2c3e50;
 
-  data() {
-    return {
-      man: '',
-    };
-  },
-  methods: {
-    setSessionStorage() {
-      sessionStorage.setItem('value', 'SSD');
-    },
-    fetchData() {
-      axios.get('/product/getCategories')
-        .then((response) => {
-          this.man = response.data;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-  },
-};
-</script>
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
+}
+</style>
