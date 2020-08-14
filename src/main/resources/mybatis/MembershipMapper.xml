@@ -6,7 +6,7 @@
         FROM MEMBER
         WHERE ID = #{id}
     </select>
-    <select id="login" resultType="MemberVO">
+    <select id="login" resultType="com.astro.nautica.VO.MemberVO">
         SELECT ID, PW
         FROM MEMBER
         WHERE ID = #{id}
@@ -22,7 +22,7 @@
         WHERE ID = #{data}
            OR EMAIL = #{data}
     </update>
-    <insert id="makeMember" parameterType="MemberVO">
+    <insert id="makeMember" parameterType="com.astro.nautica.VO.MemberVO">
         INSERT INTO MEMBER
         VALUES (#{id}, #{pw}, #{name}, #{email})
     </insert>
