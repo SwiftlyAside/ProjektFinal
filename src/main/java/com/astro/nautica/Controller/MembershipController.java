@@ -28,11 +28,6 @@ public class MembershipController {
         return new HashMap<String, Object>();
     }
 
-    @RequestMapping("bookmarkInfo")
-    public List<ProductVO> bookmarkInfo(@ModelAttribute("userInfo") Map<String, Object> usrInfo) {
-        return membershipService.BookmarkList(usrInfo);
-    }
-
     @ModelAttribute("userInfo")
     public Map<String, Object> getSessionInfo() {
         return new HashMap<>();
