@@ -37,4 +37,9 @@
             PRICE        = #{price}
         WHERE PID = #{pid}
     </update>
+    <delete id="deleteProduct" parameterType="String">
+        DELETE
+        FROM PRODUCT
+        WHERE PID = #{pid}
+    </delete>
 </mapper>

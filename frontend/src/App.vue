@@ -2,6 +2,7 @@
   <v-app id="keep">
     <v-app-bar
       app
+      color="accent"
       clipped-left
     >
       <v-app-bar-nav-icon @click="drawer = !drawer" />

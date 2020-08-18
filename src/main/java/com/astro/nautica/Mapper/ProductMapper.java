@@ -63,4 +63,11 @@ public interface ProductMapper {
      * @param productVO 정보를 수정할 상품
      */
     void modifyProduct(ProductVO productVO) throws SQLException;
+
+    /**
+     * 해당 상품을 삭제.
+     *
+     * @param pid 삭제할 제품의 pid
+     */
+    void deleteProduct(String pid) throws SQLException;
 }

@@ -65,4 +65,15 @@ public class ProductService implements IProductService {
         }
         return true;
     }
+
+    @Override
+    public Boolean deleteProduct(String pid) {
+        try {
+            productMapper.deleteProduct(pid);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 }

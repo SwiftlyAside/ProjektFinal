@@ -55,8 +55,8 @@ public class ProductController {
     }
 
     @RequestMapping("/deleteProduct")
-    public Boolean deleteProduct(String pid) {
-        return false;
+    public Boolean deleteProduct(@RequestParam("pid") String pid) {
+        return productService.deleteProduct(pid);
     }
 
     @GetMapping("/bookmarkInfo")

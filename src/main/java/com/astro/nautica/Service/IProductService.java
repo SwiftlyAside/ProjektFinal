@@ -60,4 +60,11 @@ public interface IProductService {
      * @return 성공여부
      */
     Boolean modifyProduct(ProductVO productVO);
+
+    /**
+     * 해당 상품을 삭제.
+     *
+     * @param pid 삭제할 제품의 pid
+     */
+    Boolean deleteProduct(String pid);
 }
