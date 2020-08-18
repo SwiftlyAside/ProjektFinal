@@ -20,8 +20,13 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<ProductVO> selectTest() {
-        return productMapper.selectTest();
+    public List<ProductVO> getAllProducts() {
+        return productMapper.getAllProducts();
+    }
+
+    @Override
+    public ProductVO getProduct(String pid) {
+        return productMapper.getProduct(pid);
     }
 
     @Override
@@ -43,6 +48,28 @@ public class ProductService implements IProductService {
     public Boolean addProduct(ProductVO productVO) {
         try {
             productMapper.addProduct(productVO);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public Boolean modifyProduct(ProductVO productVO) {
+        try {
+            productMapper.modifyProduct(productVO);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public Boolean deleteProduct(String pid) {
+        try {
+            productMapper.deleteProduct(pid);
         } catch (SQLException e) {
             e.printStackTrace();
             return false;

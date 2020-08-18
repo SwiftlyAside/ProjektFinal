@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'ProductInfo',
   data() {
@@ -35,7 +37,7 @@ export default {
     };
   },
   mounted() {
-    this.$http.get('/product/selectTest')
+    axios.get('/product/all')
       .then((response) => {
         this.items = response.data;
       })

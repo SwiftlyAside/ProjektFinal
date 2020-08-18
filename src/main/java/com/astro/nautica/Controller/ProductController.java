@@ -5,10 +5,7 @@ import com.astro.nautica.VO.CategoryDetailsVO;
 import com.astro.nautica.VO.CategoryVO;
 import com.astro.nautica.VO.ProductVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,32 +19,48 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @RequestMapping("/selectTest")
-    public List<ProductVO> selectTest() {
-        return productService.selectTest();
+    @GetMapping("/")
+    public ProductVO getProduct(@RequestParam("pid") String pid) {
+        return productService.getProduct(pid);
     }
 
-    @RequestMapping("/getCategories")
+    @PostMapping("/")
+    public Boolean addProduct(ProductVO productVO) {
+        return productService.addProduct(productVO);
+    }
+
+    @PutMapping("/")
+    public Boolean modifyProduct(ProductVO productVO) {
+        return productService.modifyProduct(productVO);
+    }
+
+    @GetMapping("/all")
+    public List<ProductVO> getAllProducts() {
+        return productService.getAllProducts();
+    }
+
+    @GetMapping("/categories")
     public List<CategoryVO> getCategories() {
         return productService.getCategories();
     }
 
-    @RequestMapping("/isExistProduct")
+    @GetMapping("/isExistProduct")
     public Boolean isExistProduct(@RequestParam(value = "productName", defaultValue = "nay") String productName) {
         return productService.isExistProduct(productName);
     }
 
-    @RequestMapping("/getCategoryDetails")
+    @GetMapping("/category_details")
     public List<CategoryDetailsVO> getCategoryDetails(@RequestParam(value = "categoryId", defaultValue = "nay") String categoryId) {
         return productService.getCategoryDetails(categoryId);
     }
 
-    @RequestMapping("/addProduct")
-    public Boolean addProduct(ProductVO productVO) {
-        return productService.addProduct(productVO);
+    @RequestMapping("/delete")
+    public Boolean deleteProduct(@RequestParam("pid") String pid) {
+        return productService.deleteProduct(pid);
     }
-    
+
     @GetMapping("/bookmarkInfo")
+
     public List<ProductVO> bookmarkLst() {
         return null;
     }

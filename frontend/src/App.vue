@@ -2,6 +2,7 @@
   <v-app id="keep">
     <v-app-bar
       app
+      color="accent"
       clipped-left
     >
       <v-app-bar-nav-icon @click="drawer = !drawer" />
@@ -32,6 +33,12 @@
         to="/login"
       >
         로그인
+      </v-btn>
+      <v-btn
+        icon
+        to="/admin"
+      >
+        <v-icon>settings</v-icon>
       </v-btn>
     </v-app-bar>
 
