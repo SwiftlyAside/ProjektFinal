@@ -7,7 +7,7 @@
       class="mx-auto my-12"
       width="400"
     >
-      <v-card-title>상품등록</v-card-title>
+      <v-card-title><h4>상품등록</h4></v-card-title>
       <v-card-text>
         <ValidationObserver>
           <ValidationProvider
@@ -23,16 +23,58 @@
               required
             />
           </ValidationProvider>
+          <ValidationProvider
+            v-slot="{ errors }"
+            name="상품가격"
+            rules="required|max:10"
+          >
+            <v-text-field
+              v-model="productPrice"
+              type="number"
+              :counter="10"
+              :error-messages="errors"
+              label="상품가격"
+              placeholder="0"
+              prefix="₩"
+              required
+            />
+          </ValidationProvider>
+          <span class="subheading">분류 선택</span>
+
+          <v-chip-group
+            v-model="selection"
+            active-class="orange--text text--accent-4"
+            column
+            mandatory
+          >
+            <v-chip
+              v-for="category in categories"
+              :key="category.categoryId"
+              :value="category.categoryName"
+            >
+              {{ category.categoryName }}
+            </v-chip>
+          </v-chip-group>
+          <v-file-input
+            accept="image/*"
+            show-size
+            label="대표 이미지"
+          />
+          <v-file-input
+            accept="image/*"
+            show-size
+            label="상세 이미지"
+          />
         </ValidationObserver>
+        <v-card-actions>
+          <v-btn
+            type="submit"
+            @click.prevent="addProduct"
+          >
+            상품등록
+          </v-btn>
+        </v-card-actions>
       </v-card-text>
-      <v-card-actions>
-        <v-btn
-          type="submit"
-          @click.prevent="addProduct"
-        >
-          상품등록
-        </v-btn>
-      </v-card-actions>
     </v-card>
   </v-container>
 </template>
@@ -42,6 +84,7 @@ import { required, max } from 'vee-validate/dist/rules';
 import {
   extend, ValidationObserver, ValidationProvider,
 } from 'vee-validate';
+import axios from 'axios';
 
 extend('required', {
   ...required,
@@ -62,12 +105,24 @@ export default {
   data() {
     return {
       productName: '',
+      productPrice: 0,
+      selection: '',
       isExist: true,
+      categories: [],
     };
+  },
+  mounted() {
+    axios.get('/product/getCategories')
+      .then((response) => {
+        this.categories = response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
   methods: {
     isExistProduct(productName) {
-      this.$http.get(`/product/isExistProduct?productName=${productName}`)
+      axios.get(`/product/isExistProduct?productName=${productName}`)
         .then((response) => {
           console.log(response.data);
           return response.data;
@@ -77,6 +132,7 @@ export default {
     },
     addProduct() {
       console.log(this.productName);
+      console.log(this.selection);
       console.log('들왔습니다.');
       return false;
     },
