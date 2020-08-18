@@ -118,6 +118,11 @@ export default {
     return {
       productName: '',
       productPrice: '',
+      productOptions: [{
+        optionId: 0,
+        optionName: '기본 옵션',
+        optionAddPrice: 0,
+      }],
       selection: null,
       isExist: true,
       categories: [],

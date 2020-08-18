@@ -34,6 +34,12 @@
       >
         로그인
       </v-btn>
+      <v-btn
+        icon
+        to="/admin"
+      >
+        <v-icon>settings</v-icon>
+      </v-btn>
     </v-app-bar>
 
     <v-navigation-drawer
