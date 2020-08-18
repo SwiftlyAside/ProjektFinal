@@ -41,15 +41,13 @@
             :type="show1 ? 'text' : 'password'"
             :error-messages="errors"
             label="비밀번호"
-            hint="4자 이상 입력하세요"
+            hint=""
             requried
             counter
             @click:append="show1 = !show1"
           />
         </ValidationProvider>
-        <v-btn
-          @click="submit"
-        >
+        <v-btn @click="submit">
           로그인
         </v-btn>
         <v-btn @click="clear">
@@ -72,23 +70,6 @@
     <v-btn>
       회원가입
     </v-btn>
-    <!--<div class="col">
-      <span>
-        <a href="${home }local/findMember">아이디 찾기
-          &lt;!&ndash; <button class='btn' id='btnFindMember'>아이디 찾기</button> &ndash;&gt;
-        </a>
-      </span>
-      <span>
-        <a href="${home }local/changePass">비밀번호 수정
-          &lt;!&ndash; <button class='btn' id='btnChangePw'>비밀번호 수정</button> &ndash;&gt;
-        </a>
-      </span>
-      <span>
-        <a href="${home }local/makeMember">회원가입
-          &lt;!&ndash; <button class='btn' id='btnMakeMember'>회원가입</button> &ndash;&gt;
-        </a>
-      </span>
-    </div>-->
   </v-container>
 </template>
 
@@ -126,7 +107,7 @@ export default {
       show1: false,
       rules: {
         required: (value) => !!value || 'Required.',
-        min: (v) => v.length >= 4 || '4자 이상 입력하세요',
+        min: (v) => v.length >= 4 || '비밀번호는 최소 4자 입니다.',
       },
     };
   },
