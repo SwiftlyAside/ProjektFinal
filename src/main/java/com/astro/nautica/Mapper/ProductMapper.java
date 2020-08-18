@@ -17,7 +17,7 @@ public interface ProductMapper {
      *
      * @return ProductVO 리스트
      */
-    List<ProductVO> getProducts();
+    List<ProductVO> getAllProducts();
 
     /**
      * 해당 제품의 pid로 상품 정보 입수.

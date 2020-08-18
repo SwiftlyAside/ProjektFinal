@@ -12,7 +12,7 @@ public interface IProductService {
      *
      * @return 상품 리스트
      */
-    List<ProductVO> getProducts();
+    List<ProductVO> getAllProducts();
 
     /**
      * 해당 상품의 pid로 상품 정보 입수.

@@ -19,42 +19,42 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @RequestMapping("/getProducts")
-    public List<ProductVO> getProducts() {
-        return productService.getProducts();
-    }
-
-    @RequestMapping("/getProduct")
+    @GetMapping("/")
     public ProductVO getProduct(@RequestParam("pid") String pid) {
         return productService.getProduct(pid);
     }
 
-    @RequestMapping("/getCategories")
-    public List<CategoryVO> getCategories() {
-        return productService.getCategories();
-    }
-
-    @RequestMapping("/isExistProduct")
-    public Boolean isExistProduct(@RequestParam(value = "productName", defaultValue = "nay") String productName) {
-        return productService.isExistProduct(productName);
-    }
-
-    @RequestMapping("/getCategoryDetails")
-    public List<CategoryDetailsVO> getCategoryDetails(@RequestParam(value = "categoryId", defaultValue = "nay") String categoryId) {
-        return productService.getCategoryDetails(categoryId);
-    }
-
-    @RequestMapping("/addProduct")
+    @PostMapping("/")
     public Boolean addProduct(ProductVO productVO) {
         return productService.addProduct(productVO);
     }
 
-    @RequestMapping("/modifyProduct")
+    @PutMapping("/")
     public Boolean modifyProduct(ProductVO productVO) {
         return productService.modifyProduct(productVO);
     }
 
-    @RequestMapping("/deleteProduct")
+    @GetMapping("/all")
+    public List<ProductVO> getAllProducts() {
+        return productService.getAllProducts();
+    }
+
+    @GetMapping("/categories")
+    public List<CategoryVO> getCategories() {
+        return productService.getCategories();
+    }
+
+    @GetMapping("/isExistProduct")
+    public Boolean isExistProduct(@RequestParam(value = "productName", defaultValue = "nay") String productName) {
+        return productService.isExistProduct(productName);
+    }
+
+    @GetMapping("/category_details")
+    public List<CategoryDetailsVO> getCategoryDetails(@RequestParam(value = "categoryId", defaultValue = "nay") String categoryId) {
+        return productService.getCategoryDetails(categoryId);
+    }
+
+    @RequestMapping("/delete")
     public Boolean deleteProduct(@RequestParam("pid") String pid) {
         return productService.deleteProduct(pid);
     }

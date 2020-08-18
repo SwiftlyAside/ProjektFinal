@@ -20,8 +20,8 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<ProductVO> getProducts() {
-        return productMapper.getProducts();
+    public List<ProductVO> getAllProducts() {
+        return productMapper.getAllProducts();
     }
 
     @Override
