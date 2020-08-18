@@ -12,7 +12,15 @@ public interface IProductService {
      *
      * @return 상품 리스트
      */
-    List<ProductVO> selectTest();
+    List<ProductVO> getProducts();
+
+    /**
+     * 해당 상품의 pid로 상품 정보 입수.
+     *
+     * @param pid 해당 상품의 pid
+     * @return 해당 상품
+     */
+    ProductVO getProduct(String pid);
 
     /**
      * 대분류 항목을 리스트로 반환.
@@ -44,4 +52,12 @@ public interface IProductService {
      * @return 성공여부
      */
     Boolean addProduct(ProductVO productVO);
+
+    /**
+     * 상품 정보를 수정하고 성공여부를 반환.
+     *
+     * @param productVO 정보를 수정할 상품
+     * @return 성공여부
+     */
+    Boolean modifyProduct(ProductVO productVO);
 }

@@ -5,10 +5,7 @@ import com.astro.nautica.VO.CategoryDetailsVO;
 import com.astro.nautica.VO.CategoryVO;
 import com.astro.nautica.VO.ProductVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,9 +19,14 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @RequestMapping("/selectTest")
-    public List<ProductVO> selectTest() {
-        return productService.selectTest();
+    @RequestMapping("/getProducts")
+    public List<ProductVO> getProducts() {
+        return productService.getProducts();
+    }
+
+    @RequestMapping("/getProduct")
+    public ProductVO getProduct(@RequestParam("pid") String pid) {
+        return productService.getProduct(pid);
     }
 
     @RequestMapping("/getCategories")
@@ -46,8 +48,19 @@ public class ProductController {
     public Boolean addProduct(ProductVO productVO) {
         return productService.addProduct(productVO);
     }
-    
+
+    @RequestMapping("/modifyProduct")
+    public Boolean modifyProduct(ProductVO productVO) {
+        return productService.modifyProduct(productVO);
+    }
+
+    @RequestMapping("/deleteProduct")
+    public Boolean deleteProduct(String pid) {
+        return false;
+    }
+
     @GetMapping("/bookmarkInfo")
+
     public List<ProductVO> bookmarkLst() {
         return null;
     }

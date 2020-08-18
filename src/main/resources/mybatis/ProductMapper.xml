@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.astro.nautica.Mapper.ProductMapper">
-    <select id="selectTest" resultType="com.astro.nautica.VO.ProductVO">
+    <select id="getProducts" resultType="com.astro.nautica.VO.ProductVO">
         SELECT *
         FROM PRODUCT
+    </select>
+    <select id="getProduct" parameterType="String" resultType="com.astro.nautica.VO.ProductVO">
+        SELECT *
+        FROM PRODUCT
+        WHERE PID = #{pid}
     </select>
     <select id="getCategories" resultType="com.astro.nautica.VO.CategoryVO">
         SELECT CATEGORYID, CATEGORYNAME
@@ -21,7 +26,15 @@
         WHERE CATEGORYID = #{categoryId}
     </select>
     <insert id="addProduct" parameterType="com.astro.nautica.VO.ProductVO">
-        INSERT INTO PRODUCT(PID, CATEGORYID, PRODUCTIMAGE, PRODUCTNAME, EA, PRICE, SALERATE)
-        VALUES (#{pid}, #{categoryId}, #{productImage}, #{productName}, #{ea}, #{price}, #{saleRate})
+        INSERT INTO PRODUCT(PID, CATEGORYID, PRODUCTIMAGE, PRODUCTNAME, EA, PRICE)
+        VALUES (#{pid}, #{categoryId}, #{productImage}, #{productName}, #{ea}, #{price})
     </insert>
+    <update id="modifyProduct" parameterType="com.astro.nautica.VO.ProductVO">
+        UPDATE PRODUCT
+        SET PRODUCTIMAGE = #{productImage},
+            PRODUCTNAME  = #{productName},
+            EA           = #{ea},
+            PRICE        = #{price}
+        WHERE PID = #{pid}
+    </update>
 </mapper>

@@ -35,7 +35,7 @@ export default {
     };
   },
   mounted() {
-    this.$http.get('/product/selectTest')
+    this.$http.get('/product/getProducts')
       .then((response) => {
         this.items = response.data;
       })
