@@ -25,12 +25,12 @@ public class ProductController {
     }
 
     @PostMapping("/")
-    public Boolean addProduct(ProductVO productVO) {
+    public Boolean addProduct(@RequestBody ProductVO productVO) {
         return productService.addProduct(productVO);
     }
 
     @PutMapping("/")
-    public Boolean modifyProduct(ProductVO productVO) {
+    public Boolean modifyProduct(@RequestBody ProductVO productVO) {
         return productService.modifyProduct(productVO);
     }
 

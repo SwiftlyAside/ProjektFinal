@@ -121,7 +121,7 @@ export default {
         productName: '',
         categoryId: null,
         productImage: null,
-        price: '',
+        price: null,
       },
       productOptions: [{
         optionId: 0,
@@ -163,8 +163,8 @@ export default {
         productImage: null,
         productName: this.product.productName,
         ea: this.productOptions[0].ea,
-        price: this.price,
-        saleRate: null,
+        price: this.product.price,
+        saleRate: 0,
       }).then((response) => {
         if (response.data === true) this.snackbar = true;
       });

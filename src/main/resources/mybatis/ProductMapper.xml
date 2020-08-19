@@ -29,8 +29,7 @@
         <choose>
             <when test="productImage != null">
                 INSERT INTO PRODUCT(PID, CATEGORYID, PRODUCTIMAGE, PRODUCTNAME, EA, PRICE)
-                VALUES ((SELECT max(PID) + 1 FROM PRODUCT), #{categoryId}, #{productImage}, #{productName}, #{ea},
-                #{price})
+                VALUES ((SELECT max(PID) + 1 FROM PRODUCT), #{categoryId}, #{productImage}, #{productName}, #{ea}, #{price})
             </when>
             <when test="productImage == null">
                 INSERT INTO PRODUCT(PID, CATEGORYID, PRODUCTNAME, EA, PRICE)
