@@ -157,8 +157,6 @@ export default {
       return true;
     },
     addProduct() {
-      console.log(this.productName);
-      console.log(this.selection);
       axios.post('/product/', {
         pid: null,
         categoryId: this.product.categoryId,

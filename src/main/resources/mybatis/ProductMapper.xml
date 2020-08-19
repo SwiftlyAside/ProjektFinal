@@ -26,8 +26,17 @@
         WHERE CATEGORYID = #{categoryId}
     </select>
     <insert id="addProduct" parameterType="com.astro.nautica.VO.ProductVO">
-        INSERT INTO PRODUCT(PID, CATEGORYID, PRODUCTIMAGE, PRODUCTNAME, EA, PRICE)
-        VALUES ((SELECT max(PID) + 1 FROM PRODUCT), #{categoryId}, #{productImage}, #{productName}, #{ea}, #{price})
+        <choose>
+            <when test="productImage != null">
+                INSERT INTO PRODUCT(PID, CATEGORYID, PRODUCTIMAGE, PRODUCTNAME, EA, PRICE)
+                VALUES ((SELECT max(PID) + 1 FROM PRODUCT), #{categoryId}, #{productImage}, #{productName}, #{ea},
+                #{price})
+            </when>
+            <when test="productImage == null">
+                INSERT INTO PRODUCT(PID, CATEGORYID, PRODUCTNAME, EA, PRICE)
+                VALUES ((SELECT max(PID) + 1 FROM PRODUCT), #{categoryId}, #{productName}, #{ea}, #{price})
+            </when>
+        </choose>
     </insert>
     <update id="modifyProduct" parameterType="com.astro.nautica.VO.ProductVO">
         UPDATE PRODUCT
