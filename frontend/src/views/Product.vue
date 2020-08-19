@@ -48,8 +48,13 @@
               column
               mandatory
             >
+              <v-skeleton-loader
+                v-if="loading"
+                type="chip"
+              />
               <v-chip
                 v-for="category in categories"
+                v-else
                 :key="category.categoryId"
                 :value="category.categoryName"
                 @click="setId(category.categoryId)"
@@ -106,7 +111,7 @@ extend('required', {
 
 extend('max', {
   ...max,
-  message: '{_field_} 길이는 50자를 초과할 수 없습니다.',
+  message: '{_field_} 길이는 {length}자를 초과할 수 없습니다.',
 });
 
 export default {
@@ -117,6 +122,7 @@ export default {
   },
   data() {
     return {
+      loading: true,
       product: {
         productName: '',
         categoryId: null,
@@ -141,6 +147,7 @@ export default {
     axios.get('/product/categories')
       .then((response) => {
         this.categories = response.data;
+        this.loading = false;
       })
       .catch((error) => {
         console.log(error);
