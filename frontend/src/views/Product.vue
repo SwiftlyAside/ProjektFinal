@@ -17,7 +17,7 @@
               rules="required|max:50"
             >
               <v-text-field
-                v-model="productName"
+                v-model="product.productName"
                 :counter="50"
                 :error-messages="errors"
                 label="상품명"
@@ -30,7 +30,7 @@
               rules="required|max:10"
             >
               <v-text-field
-                v-model="productPrice"
+                v-model="product.price"
                 type="number"
                 :counter="10"
                 :error-messages="errors"
@@ -52,6 +52,7 @@
                 v-for="category in categories"
                 :key="category.categoryId"
                 :value="category.categoryName"
+                @click="setId(category.categoryId)"
               >
                 {{ category.categoryName }}
               </v-chip>
@@ -116,10 +117,15 @@ export default {
   },
   data() {
     return {
-      productName: '',
-      productPrice: '',
+      product: {
+        productName: '',
+        categoryId: null,
+        productImage: null,
+        price: '',
+      },
       productOptions: [{
         optionId: 0,
+        ea: 99,
         optionName: '기본 옵션',
         optionAddPrice: 0,
       }],
@@ -141,25 +147,34 @@ export default {
       });
   },
   methods: {
+    setId(categoryId) {
+      this.product.categoryId = categoryId;
+    },
     isExistProduct(productName) {
       axios.get(`/product/isExistProduct?productName=${productName}`)
-        .then((response) => {
-          console.log(response.data);
-          return response.data;
-        })
+        .then((response) => response.data)
         .catch(() => true);
       return true;
     },
     addProduct() {
       console.log(this.productName);
       console.log(this.selection);
-      console.log('들왔습니다.');
-      this.snackbar = true;
+      axios.post('/product/', {
+        pid: null,
+        categoryId: this.product.categoryId,
+        productImage: null,
+        productName: this.product.productName,
+        ea: this.productOptions[0].ea,
+        price: this.price,
+        saleRate: null,
+      }).then((response) => {
+        if (response.data === true) this.snackbar = true;
+      });
       return false;
     },
     clear() {
       this.productName = '';
-      this.productPrice = '';
+      this.price = '';
       this.selection = null;
       this.isExist = true;
       this.$refs.observer.reset();

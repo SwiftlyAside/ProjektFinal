@@ -58,10 +58,4 @@ public class ProductController {
     public Boolean deleteProduct(@RequestParam("pid") String pid) {
         return productService.deleteProduct(pid);
     }
-
-    @GetMapping("/bookmarkInfo")
-
-    public List<ProductVO> bookmarkLst() {
-        return null;
-    }
 }
