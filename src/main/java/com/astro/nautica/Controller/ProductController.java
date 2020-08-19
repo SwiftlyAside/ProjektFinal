@@ -25,12 +25,12 @@ public class ProductController {
     }
 
     @PostMapping("/")
-    public Boolean addProduct(ProductVO productVO) {
+    public Boolean addProduct(@RequestBody ProductVO productVO) {
         return productService.addProduct(productVO);
     }
 
     @PutMapping("/")
-    public Boolean modifyProduct(ProductVO productVO) {
+    public Boolean modifyProduct(@RequestBody ProductVO productVO) {
         return productService.modifyProduct(productVO);
     }
 
@@ -57,11 +57,5 @@ public class ProductController {
     @RequestMapping("/delete")
     public Boolean deleteProduct(@RequestParam("pid") String pid) {
         return productService.deleteProduct(pid);
-    }
-
-    @GetMapping("/bookmarkInfo")
-
-    public List<ProductVO> bookmarkLst() {
-        return null;
     }
 }

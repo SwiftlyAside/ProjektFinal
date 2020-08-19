@@ -63,30 +63,6 @@
                 {{ item.heading }}
               </v-subheader>
             </v-col>
-            <v-col
-              class="text-right"
-              cols="6"
-            >
-              <v-btn
-                to="/product"
-                small
-                text
-              >
-                상품등록
-              </v-btn>
-            </v-col>
-            <v-col
-              class="text-right"
-              cols="6"
-            >
-              <v-btn
-                to="/productInfo"
-                small
-                text
-              >
-                상품 리스트
-              </v-btn>
-            </v-col>
           </v-row>
           <v-divider
             v-else-if="item.divider"
@@ -98,6 +74,7 @@
             v-else
             :key="i"
             link
+            :to="item.link"
           >
             <v-list-item-action>
               <v-icon>{{ item.icon }}</v-icon>
@@ -126,20 +103,20 @@ export default {
   data: () => ({
     drawer: null,
     items: [
-      { icon: 'lightbulb_outline', text: 'Notes' },
-      { icon: 'touch_app', text: 'Reminders' },
+      { heading: '상품 관리' },
+      { icon: 'list', text: '상품목록', link: '/productInfo' },
+      { icon: 'add', text: '상품등록', link: '/product' },
       { divider: true },
-      { heading: 'Labels' },
-      { icon: 'add', text: 'Create new label' },
+      { heading: '판매' },
+      { icon: 'attach_money', text: '결제 정보 확인', link: '/purchases' },
+      { icon: 'money_off', text: '환불 정보 확인', link: '/refunds' },
       { divider: true },
-      { icon: 'archive', text: 'Archive' },
-      { icon: 'delete', text: 'Trash' },
+      { heading: '정산' },
+      { icon: 'multiline_chart', text: '기간별 정산', link: '/financials' },
       { divider: true },
-      { icon: 'settings', text: 'Settings' },
-      { icon: 'chat_bubble', text: 'Trash' },
-      { icon: 'help', text: 'Help' },
-      { icon: 'phonelink', text: 'App downloads' },
-      { icon: 'keyboard', text: 'Keyboard shortcuts' },
+      { heading: '사이트 관리' },
+      { icon: 'contact_support', text: '문의 내용 확인', link: '/contacts' },
+      { icon: 'design_services', text: '상품 메뉴 관리', link: '/layout' },
     ],
   }),
 };

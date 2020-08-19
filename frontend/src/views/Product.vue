@@ -17,7 +17,7 @@
               rules="required|max:50"
             >
               <v-text-field
-                v-model="productName"
+                v-model="product.productName"
                 :counter="50"
                 :error-messages="errors"
                 label="상품명"
@@ -30,7 +30,7 @@
               rules="required|max:10"
             >
               <v-text-field
-                v-model="productPrice"
+                v-model="product.price"
                 type="number"
                 :counter="10"
                 :error-messages="errors"
@@ -48,10 +48,16 @@
               column
               mandatory
             >
+              <v-skeleton-loader
+                v-if="loading"
+                type="chip"
+              />
               <v-chip
                 v-for="category in categories"
+                v-else
                 :key="category.categoryId"
                 :value="category.categoryName"
+                @click="setId(category.categoryId)"
               >
                 {{ category.categoryName }}
               </v-chip>
@@ -105,7 +111,7 @@ extend('required', {
 
 extend('max', {
   ...max,
-  message: '{_field_} 길이는 50자를 초과할 수 없습니다.',
+  message: '{_field_} 길이는 {length}자를 초과할 수 없습니다.',
 });
 
 export default {
@@ -116,10 +122,16 @@ export default {
   },
   data() {
     return {
-      productName: '',
-      productPrice: '',
+      loading: true,
+      product: {
+        productName: '',
+        categoryId: null,
+        productImage: null,
+        price: null,
+      },
       productOptions: [{
         optionId: 0,
+        ea: 99,
         optionName: '기본 옵션',
         optionAddPrice: 0,
       }],
@@ -135,31 +147,39 @@ export default {
     axios.get('/product/categories')
       .then((response) => {
         this.categories = response.data;
+        this.loading = false;
       })
       .catch((error) => {
         console.log(error);
       });
   },
   methods: {
+    setId(categoryId) {
+      this.product.categoryId = categoryId;
+    },
     isExistProduct(productName) {
       axios.get(`/product/isExistProduct?productName=${productName}`)
-        .then((response) => {
-          console.log(response.data);
-          return response.data;
-        })
+        .then((response) => response.data)
         .catch(() => true);
       return true;
     },
     addProduct() {
-      console.log(this.productName);
-      console.log(this.selection);
-      console.log('들왔습니다.');
-      this.snackbar = true;
+      axios.post('/product/', {
+        pid: null,
+        categoryId: this.product.categoryId,
+        productImage: null,
+        productName: this.product.productName,
+        ea: this.productOptions[0].ea,
+        price: this.product.price,
+        saleRate: 0,
+      }).then((response) => {
+        if (response.data === true) this.snackbar = true;
+      });
       return false;
     },
     clear() {
       this.productName = '';
-      this.productPrice = '';
+      this.price = '';
       this.selection = null;
       this.isExist = true;
       this.$refs.observer.reset();
