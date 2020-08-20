@@ -97,8 +97,8 @@
               >
                 <v-list-item-action>
                   <v-text-field
+                    v-model="item.ea"
                     label="수량"
-                    :value="item.ea"
                   />
                 </v-list-item-action>
                 <v-list-item-title

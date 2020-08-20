@@ -2,6 +2,7 @@ package com.astro.nautica.Mapper;
 
 import com.astro.nautica.VO.CategoryDetailsVO;
 import com.astro.nautica.VO.CategoryVO;
+import com.astro.nautica.VO.ProductOptionVO;
 import com.astro.nautica.VO.ProductVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -78,4 +79,8 @@ public interface ProductMapper {
      * @param pid 삭제할 제품의 pid
      */
     void deleteProduct(String pid) throws SQLException;
+
+    void addProductOptions(List<ProductOptionVO> productOptionVOList) throws SQLException;
+
+    void deleteProductOptions(String pid) throws SQLException;
 }

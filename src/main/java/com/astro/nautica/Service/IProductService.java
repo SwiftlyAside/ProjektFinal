@@ -2,6 +2,7 @@ package com.astro.nautica.Service;
 
 import com.astro.nautica.VO.CategoryDetailsVO;
 import com.astro.nautica.VO.CategoryVO;
+import com.astro.nautica.VO.ProductOptionVO;
 import com.astro.nautica.VO.ProductVO;
 
 import java.util.List;
@@ -74,4 +75,12 @@ public interface IProductService {
      * @param pid 삭제할 제품의 pid
      */
     Boolean deleteProduct(String pid);
+
+    /**
+     * 상품 옵션 리스트를 등록하고 성공여부를 반환.
+     *
+     * @param productOptionVOList 옵션 리스트
+     * @return 성공여부
+     */
+    Boolean addProductOptions(List<ProductOptionVO> productOptionVOList);
 }
