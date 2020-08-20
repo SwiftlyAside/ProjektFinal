@@ -17,7 +17,15 @@ public interface ProductMapper {
      *
      * @return ProductVO 리스트
      */
-    List<ProductVO> selectTest();
+    List<ProductVO> getAllProducts();
+
+    /**
+     * 해당 제품의 pid로 상품 정보 입수.
+     *
+     * @param pid 해당 제품의 pid
+     * @return ProductVO
+     */
+    ProductVO getProduct(String pid);
 
     /**
      * 대분류 목록을 CategoryVO 리스트 형태로 반환.
@@ -48,4 +56,18 @@ public interface ProductMapper {
      * @param productVO 등록할 상품
      */
     void addProduct(ProductVO productVO) throws SQLException;
+
+    /**
+     * 상품 정보를 수정.
+     *
+     * @param productVO 정보를 수정할 상품
+     */
+    void modifyProduct(ProductVO productVO) throws SQLException;
+
+    /**
+     * 해당 상품을 삭제.
+     *
+     * @param pid 삭제할 제품의 pid
+     */
+    void deleteProduct(String pid) throws SQLException;
 }

@@ -7,7 +7,6 @@ import router from './router';
 
 Vue.prototype.$http = Axios;
 Vue.config.productionTip = false;
-Vue.prototype.$http = Axios;
 
 new Vue({
   vuetify,

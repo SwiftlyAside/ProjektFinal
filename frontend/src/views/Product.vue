@@ -7,40 +7,111 @@
       class="mx-auto my-12"
       width="400"
     >
-      <v-card-title>상품등록</v-card-title>
+      <v-card-title><h4>상품등록</h4></v-card-title>
       <v-card-text>
-        <ValidationObserver>
-          <ValidationProvider
-            v-slot="{ errors }"
-            name="상품명"
-            rules="required"
-          >
-            <v-text-field
-              v-model="productName"
-              :counter="10"
-              :error-messages="errors"
-              label="상품명"
-              required
+        <form>
+          <ValidationObserver>
+            <ValidationProvider
+              v-slot="{ errors }"
+              name="상품명"
+              rules="required|max:50"
+            >
+              <v-text-field
+                v-model="product.productName"
+                :counter="50"
+                :error-messages="errors"
+                label="상품명"
+                required
+              />
+            </ValidationProvider>
+            <ValidationProvider
+              v-slot="{ errors }"
+              name="상품가격"
+              rules="required|max:10"
+            >
+              <v-text-field
+                v-model="product.price"
+                type="number"
+                :counter="10"
+                :error-messages="errors"
+                label="상품가격"
+                placeholder="0"
+                prefix="₩"
+                required
+              />
+            </ValidationProvider>
+            <span class="subheading">분류 선택</span>
+
+            <v-chip-group
+              v-model="selection"
+              active-class="orange--text text--accent-4"
+              column
+              mandatory
+            >
+              <v-skeleton-loader
+                v-if="loading"
+                type="chip"
+              />
+              <v-chip
+                v-for="category in categories"
+                v-else
+                :key="category.categoryId"
+                :value="category.categoryName"
+                @click="setId(category.categoryId)"
+              >
+                {{ category.categoryName }}
+              </v-chip>
+            </v-chip-group>
+            <v-file-input
+              accept="image/*"
+              show-size
+              label="대표 이미지"
             />
-          </ValidationProvider>
-        </ValidationObserver>
+            <v-file-input
+              accept="image/*"
+              show-size
+              label="상세 이미지"
+            />
+            <v-text-field /><v-text-field />
+          </ValidationObserver>
+          <v-card-actions>
+            <v-btn
+              type="submit"
+              @click.prevent="addProduct"
+            >
+              상품등록
+            </v-btn>
+            <v-btn @click="clear">
+              취소
+            </v-btn>
+            <v-snackbar
+              v-model="snackbar"
+              :timeout="timeout"
+            >
+              {{ text }}
+            </v-snackbar>
+          </v-card-actions>
+        </form>
       </v-card-text>
-      <v-card-actions>
-        <v-btn>상품등록</v-btn>
-      </v-card-actions>
     </v-card>
   </v-container>
 </template>
 
 <script>
-import { required } from 'vee-validate/dist/rules';
+import { required, max } from 'vee-validate/dist/rules';
 import {
   extend, ValidationObserver, ValidationProvider,
 } from 'vee-validate';
+import axios from 'axios';
 
 extend('required', {
   ...required,
   message: '{_field_}을 입력해주세요.',
+});
+
+extend('max', {
+  ...max,
+  message: '{_field_} 길이는 {length}자를 초과할 수 없습니다.',
 });
 
 export default {
@@ -51,19 +122,67 @@ export default {
   },
   data() {
     return {
-      productName: '',
+      loading: true,
+      product: {
+        productName: '',
+        categoryId: null,
+        productImage: null,
+        price: null,
+      },
+      productOptions: [{
+        optionId: 0,
+        ea: 99,
+        optionName: '기본 옵션',
+        optionAddPrice: 0,
+      }],
+      selection: null,
       isExist: true,
+      categories: [],
+      snackbar: false,
+      text: '상품등록이 완료되었습니다.',
+      timeout: 3000,
     };
   },
+  mounted() {
+    axios.get('/product/categories')
+      .then((response) => {
+        this.categories = response.data;
+        this.loading = false;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
   methods: {
+    setId(categoryId) {
+      this.product.categoryId = categoryId;
+    },
     isExistProduct(productName) {
-      this.$http.get(`/product/isExistProduct?productName=${productName}`)
-        .then((response) => {
-          console.log(response.data);
-          return response.data;
-        })
+      axios.get(`/product/isExistProduct?productName=${productName}`)
+        .then((response) => response.data)
         .catch(() => true);
       return true;
+    },
+    addProduct() {
+      axios.post('/product/', {
+        pid: null,
+        categoryId: this.product.categoryId,
+        productImage: null,
+        productName: this.product.productName,
+        ea: this.productOptions[0].ea,
+        price: this.product.price,
+        saleRate: 0,
+      }).then((response) => {
+        if (response.data === true) this.snackbar = true;
+      });
+      return false;
+    },
+    clear() {
+      this.productName = '';
+      this.price = '';
+      this.selection = null;
+      this.isExist = true;
+      this.$refs.observer.reset();
     },
   },
 };
