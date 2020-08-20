@@ -44,6 +44,11 @@ const routes = [
     name: 'FindMember',
     component: () => import('../views/membership/findMember'),
   },
+  {
+    path: '/userCart',
+    name: 'UserCart',
+    component: () => import('../views/purchase/userCart'),
+  },
 ];
 
 const router = new VueRouter({
