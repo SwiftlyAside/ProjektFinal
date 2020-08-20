@@ -27,12 +27,17 @@ const routes = [
   {
     path: '/product',
     name: 'Product',
-    component: () => import('../views/Product'),
+    component: () => import('../views/product/Product'),
   },
   {
     path: '/productInfo',
     name: 'ProductInfo',
-    component: () => import('../views/ProductInfo'),
+    component: () => import('../views/product/ProductInfo'),
+  },
+  {
+    path: '/product_details',
+    name: 'ProductDetails',
+    component: () => import('../views/product/ProductDetails'),
   },
   {
     path: '/member/findMember',

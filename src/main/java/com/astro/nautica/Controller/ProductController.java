@@ -3,6 +3,7 @@ package com.astro.nautica.Controller;
 import com.astro.nautica.Service.IProductService;
 import com.astro.nautica.VO.CategoryDetailsVO;
 import com.astro.nautica.VO.CategoryVO;
+import com.astro.nautica.VO.ProductOptionVO;
 import com.astro.nautica.VO.ProductVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,9 +25,19 @@ public class ProductController {
         return productService.getProduct(pid);
     }
 
+    @GetMapping("/by_name")
+    public List<ProductVO> getProducts(@RequestParam("productName") String productName) {
+        return productService.getProducts(productName);
+    }
+
     @PostMapping("/")
     public Boolean addProduct(@RequestBody ProductVO productVO) {
         return productService.addProduct(productVO);
+    }
+
+    @PostMapping("/options")
+    public Boolean addOptions(@RequestBody List<ProductOptionVO> productOptionVOList) {
+        return productService.addProductOptions(productOptionVOList);
     }
 
     @PutMapping("/")

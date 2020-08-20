@@ -5,9 +5,9 @@
   >
     <v-card
       class="mx-auto my-12"
-      width="400"
+      width="800"
     >
-      <v-card-title><h4>상품등록</h4></v-card-title>
+      <v-card-title><h3>상품등록</h3></v-card-title>
       <v-card-text>
         <form>
           <ValidationObserver>
@@ -40,7 +40,9 @@
                 required
               />
             </ValidationProvider>
-            <span class="subheading">분류 선택</span>
+            <v-divider />
+
+            <v-card-subtitle><h3>분류 선택</h3></v-card-subtitle>
 
             <v-chip-group
               v-model="selection"
@@ -72,7 +74,49 @@
               show-size
               label="상세 이미지"
             />
-            <v-text-field /><v-text-field />
+            <v-divider />
+            <v-card-subtitle><h3>상품 옵션</h3></v-card-subtitle>
+            <v-card-actions>
+              <v-text-field
+                v-model="newOption.optionName"
+                label="옵션 이름"
+              /><v-text-field
+                v-model="newOption.optionAddPrice"
+                label="옵션 추가가격"
+              /><v-btn
+                icon
+                @click="addOption"
+              >
+                <v-icon>add</v-icon>
+              </v-btn>
+            </v-card-actions>
+            <v-list>
+              <v-list-item
+                v-for="item in productOptions"
+                :key="item.optionId"
+              >
+                <v-list-item-action>
+                  <v-text-field
+                    v-model="item.ea"
+                    label="수량"
+                  />
+                </v-list-item-action>
+                <v-list-item-title
+                  v-text="item.optionName + ' (+ ₩'+ item.optionAddPrice +')'"
+                />
+                <v-list-item-action>
+                  <v-btn
+                    icon
+                    :disabled="item.disabled"
+                    @click="removeOption(item.optionId)"
+                  >
+                    <v-icon>
+                      delete
+                    </v-icon>
+                  </v-btn>
+                </v-list-item-action>
+              </v-list-item>
+            </v-list>
           </ValidationObserver>
           <v-card-actions>
             <v-btn
@@ -129,17 +173,26 @@ export default {
         productImage: null,
         price: null,
       },
+      newOption: {
+        optionName: '',
+        optionAddPrice: 0,
+      },
       productOptions: [{
         optionId: 0,
         ea: 99,
         optionName: '기본 옵션',
         optionAddPrice: 0,
+        disabled: true,
       }],
       selection: null,
       isExist: true,
       categories: [],
       snackbar: false,
-      text: '상품등록이 완료되었습니다.',
+      text: '',
+      messages: {
+        addOptionMessage: '옵션이 추가되었습니다.',
+        addProductMessage: '상품등록이 완료되었습니다.',
+      },
       timeout: 3000,
     };
   },
@@ -157,6 +210,23 @@ export default {
     setId(categoryId) {
       this.product.categoryId = categoryId;
     },
+    addOption() {
+      this.productOptions.push({
+        optionId: this.productOptions[this.productOptions.length - 1].optionId + 1,
+        ea: 99,
+        optionName: this.newOption.optionName,
+        optionAddPrice: this.newOption.optionAddPrice,
+        disabled: false,
+      });
+      this.newOption.optionName = '';
+      this.newOption.optionAddPrice = 0;
+      this.text = this.messages.addOptionMessage;
+      this.snackbar = true;
+    },
+    removeOption(index) {
+      const idx = this.productOptions.findIndex((item) => item.optionId === index);
+      if (idx > -1) this.productOptions.splice(idx, 1);
+    },
     isExistProduct(productName) {
       axios.get(`/product/isExistProduct?productName=${productName}`)
         .then((response) => response.data)
@@ -173,7 +243,10 @@ export default {
         price: this.product.price,
         saleRate: 0,
       }).then((response) => {
-        if (response.data === true) this.snackbar = true;
+        if (response.data === true) {
+          this.text = this.messages.addProductMessage;
+          this.snackbar = true;
+        }
       });
       return false;
     },
