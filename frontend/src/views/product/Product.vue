@@ -77,7 +77,16 @@
             <v-divider />
             <v-card-subtitle><h3>상품 옵션</h3></v-card-subtitle>
             <v-card-actions>
-              <v-text-field label="옵션 이름" /><v-text-field label="옵션 추가가격" /><v-btn icon>
+              <v-text-field
+                v-model="newOption.optionName"
+                label="옵션 이름"
+              /><v-text-field
+                v-model="newOption.optionAddPrice"
+                label="옵션 추가가격"
+              /><v-btn
+                icon
+                @click="addOption"
+              >
                 <v-icon>add</v-icon>
               </v-btn>
             </v-card-actions>
@@ -92,22 +101,14 @@
                     :value="item.ea"
                   />
                 </v-list-item-action>
-                <v-list-item-action>
-                  <v-text-field
-                    :value="item.optionName"
-                  />
-                </v-list-item-action>
-                <v-list-item-action>
-                  <v-text-field
-                    prefix="+"
-                    :disabled="item.disabled"
-                    :value="item.optionAddPrice"
-                  />
-                </v-list-item-action>
+                <v-list-item-title
+                  v-text="item.optionName + ' (+ ₩'+ item.optionAddPrice +')'"
+                />
                 <v-list-item-action>
                   <v-btn
                     icon
                     :disabled="item.disabled"
+                    @click="removeOption(item.optionId)"
                   >
                     <v-icon>
                       delete
@@ -172,6 +173,10 @@ export default {
         productImage: null,
         price: null,
       },
+      newOption: {
+        optionName: '',
+        optionAddPrice: 0,
+      },
       productOptions: [{
         optionId: 0,
         ea: 99,
@@ -183,7 +188,11 @@ export default {
       isExist: true,
       categories: [],
       snackbar: false,
-      text: '상품등록이 완료되었습니다.',
+      text: '',
+      messages: {
+        addOptionMessage: '옵션이 추가되었습니다.',
+        addProductMessage: '상품등록이 완료되었습니다.',
+      },
       timeout: 3000,
     };
   },
@@ -201,6 +210,23 @@ export default {
     setId(categoryId) {
       this.product.categoryId = categoryId;
     },
+    addOption() {
+      this.productOptions.push({
+        optionId: this.productOptions[this.productOptions.length - 1].optionId + 1,
+        ea: 99,
+        optionName: this.newOption.optionName,
+        optionAddPrice: this.newOption.optionAddPrice,
+        disabled: false,
+      });
+      this.newOption.optionName = '';
+      this.newOption.optionAddPrice = 0;
+      this.text = this.messages.addOptionMessage;
+      this.snackbar = true;
+    },
+    removeOption(index) {
+      const idx = this.productOptions.findIndex((item) => item.optionId === index);
+      if (idx > -1) this.productOptions.splice(idx, 1);
+    },
     isExistProduct(productName) {
       axios.get(`/product/isExistProduct?productName=${productName}`)
         .then((response) => response.data)
@@ -217,7 +243,10 @@ export default {
         price: this.product.price,
         saleRate: 0,
       }).then((response) => {
-        if (response.data === true) this.snackbar = true;
+        if (response.data === true) {
+          this.text = this.messages.addProductMessage;
+          this.snackbar = true;
+        }
       });
       return false;
     },
