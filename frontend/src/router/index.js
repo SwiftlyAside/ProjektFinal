@@ -35,6 +35,11 @@ const routes = [
     component: () => import('../views/ProductInfo'),
   },
   {
+    path: '/product_details',
+    name: 'ProductDetails',
+    component: () => import('../views/ProductDetails'),
+  },
+  {
     path: '/member/findMember',
     name: 'FindMember',
     component: () => import('../views/membership/findMember'),

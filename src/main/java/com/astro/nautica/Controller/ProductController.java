@@ -24,6 +24,11 @@ public class ProductController {
         return productService.getProduct(pid);
     }
 
+    @GetMapping("/by_name")
+    public List<ProductVO> getProducts(@RequestParam("productName") String productName) {
+        return productService.getProducts(productName);
+    }
+
     @PostMapping("/")
     public Boolean addProduct(@RequestBody ProductVO productVO) {
         return productService.addProduct(productVO);

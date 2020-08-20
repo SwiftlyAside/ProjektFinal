@@ -25,6 +25,11 @@ public class ProductService implements IProductService {
     }
 
     @Override
+    public List<ProductVO> getProducts(String productName) {
+        return productMapper.getProducts(productName);
+    }
+
+    @Override
     public ProductVO getProduct(String pid) {
         return productMapper.getProduct(pid);
     }

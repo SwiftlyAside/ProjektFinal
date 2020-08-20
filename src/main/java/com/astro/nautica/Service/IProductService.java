@@ -15,6 +15,13 @@ public interface IProductService {
     List<ProductVO> getAllProducts();
 
     /**
+     * productName이 이름에 들어있는 상품 전체를 리스트로 반환.
+     *
+     * @return 상품 리스트
+     */
+    List<ProductVO> getProducts(String productName);
+
+    /**
      * 해당 상품의 pid로 상품 정보 입수.
      *
      * @param pid 해당 상품의 pid

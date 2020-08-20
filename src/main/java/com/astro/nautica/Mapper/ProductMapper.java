@@ -20,6 +20,14 @@ public interface ProductMapper {
     List<ProductVO> getAllProducts();
 
     /**
+     * productName이 이름에 들어있는 상품 목록을 ProductVO 리스트 형태로 반환.
+     *
+     * @param productName 검색 키워드
+     * @return ProductVO 리스트
+     */
+    List<ProductVO> getProducts(String productName);
+
+    /**
      * 해당 제품의 pid로 상품 정보 입수.
      *
      * @param pid 해당 제품의 pid
