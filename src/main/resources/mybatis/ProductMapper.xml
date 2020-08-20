@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.astro.nautica.Mapper.ProductMapper">
-    <select id="getAllProducts" resultType="com.astro.nautica.VO.ProductVO">
+    <sql id="selectProduct">
         SELECT *
         FROM PRODUCT
+    </sql>
+    <select id="getAllProducts" resultType="com.astro.nautica.VO.ProductVO">
+        <include refid="selectProduct"/>
+    </select>
+    <select id="getProducts" parameterType="String" resultType="com.astro.nautica.VO.ProductVO">
+        <include refid="selectProduct"/>
+        WHERE PRODUCTNAME LIKE '%'||#{productName}||'%'
     </select>
     <select id="getProduct" parameterType="String" resultType="com.astro.nautica.VO.ProductVO">
-        SELECT *
-        FROM PRODUCT
+        <include refid="selectProduct"/>
         WHERE PID = #{pid}
     </select>
     <select id="getCategories" resultType="com.astro.nautica.VO.CategoryVO">
@@ -29,7 +35,8 @@
         <choose>
             <when test="productImage != null">
                 INSERT INTO PRODUCT(PID, CATEGORYID, PRODUCTIMAGE, PRODUCTNAME, EA, PRICE)
-                VALUES ((SELECT max(PID) + 1 FROM PRODUCT), #{categoryId}, #{productImage}, #{productName}, #{ea}, #{price})
+                VALUES ((SELECT max(PID) + 1 FROM PRODUCT), #{categoryId}, #{productImage}, #{productName}, #{ea},
+                #{price})
             </when>
             <when test="productImage == null">
                 INSERT INTO PRODUCT(PID, CATEGORYID, PRODUCTNAME, EA, PRICE)

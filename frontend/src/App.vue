@@ -14,11 +14,13 @@
         Acorn&nbsp;전자상가
       </v-btn>
       <v-text-field
+        v-model="searchKeyword"
         flat
         hide-details
         label="상품 검색"
         prepend-inner-icon="search"
         solo-inverted
+        @keyup.enter="getProduct()"
       />
 
       <v-spacer />
@@ -96,12 +98,15 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   props: {
     source: String,
   },
   data: () => ({
     drawer: null,
+    searchKeyword: '',
     items: [
       { heading: '상품 관리' },
       { icon: 'list', text: '상품목록', link: '/productInfo' },
@@ -119,6 +124,14 @@ export default {
       { icon: 'design_services', text: '상품 메뉴 관리', link: '/layout' },
     ],
   }),
+  methods: {
+    getProduct() {
+      axios.get(`/product/by_name?productName=${this.searchKeyword}`).then((response) => {
+        this.$router.push('/');
+        this.$router.push({ name: 'ProductInfo', params: { data: response.data } });
+      });
+    },
+  },
 };
 </script>
 
