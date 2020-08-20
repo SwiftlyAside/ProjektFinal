@@ -5,9 +5,9 @@
   >
     <v-card
       class="mx-auto my-12"
-      width="600"
+      width="800"
     >
-      <v-card-title><h4>상품등록</h4></v-card-title>
+      <v-card-title><h3>상품등록</h3></v-card-title>
       <v-card-text>
         <form>
           <ValidationObserver>
@@ -40,7 +40,9 @@
                 required
               />
             </ValidationProvider>
-            <span class="subheading">분류 선택</span>
+            <v-divider />
+
+            <v-card-subtitle><h3>분류 선택</h3></v-card-subtitle>
 
             <v-chip-group
               v-model="selection"
@@ -72,18 +74,42 @@
               show-size
               label="상세 이미지"
             />
-            <v-text-field /><v-text-field />
+            <v-divider />
+            <v-card-subtitle><h3>상품 옵션</h3></v-card-subtitle>
+            <v-card-actions>
+              <v-text-field label="옵션 이름" /><v-text-field label="옵션 추가가격" /><v-btn icon>
+                <v-icon>add</v-icon>
+              </v-btn>
+            </v-card-actions>
             <v-list>
               <v-list-item
                 v-for="item in productOptions"
                 :key="item.optionId"
               >
-                <v-list-item-content>
-                  <v-list-item-title v-text="item.optionName" />
-                </v-list-item-content>
                 <v-list-item-action>
-                  <v-btn icon>
-                    <v-icon v-if="item.optionId ">
+                  <v-text-field
+                    label="수량"
+                    :value="item.ea"
+                  />
+                </v-list-item-action>
+                <v-list-item-action>
+                  <v-text-field
+                    :value="item.optionName"
+                  />
+                </v-list-item-action>
+                <v-list-item-action>
+                  <v-text-field
+                    prefix="+"
+                    :disabled="item.disabled"
+                    :value="item.optionAddPrice"
+                  />
+                </v-list-item-action>
+                <v-list-item-action>
+                  <v-btn
+                    icon
+                    :disabled="item.disabled"
+                  >
+                    <v-icon>
                       delete
                     </v-icon>
                   </v-btn>
@@ -151,6 +177,7 @@ export default {
         ea: 99,
         optionName: '기본 옵션',
         optionAddPrice: 0,
+        disabled: true,
       }],
       selection: null,
       isExist: true,
