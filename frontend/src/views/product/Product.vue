@@ -5,7 +5,7 @@
   >
     <v-card
       class="mx-auto my-12"
-      width="400"
+      width="600"
     >
       <v-card-title><h4>상품등록</h4></v-card-title>
       <v-card-text>
@@ -73,6 +73,23 @@
               label="상세 이미지"
             />
             <v-text-field /><v-text-field />
+            <v-list>
+              <v-list-item
+                v-for="item in productOptions"
+                :key="item.optionId"
+              >
+                <v-list-item-content>
+                  <v-list-item-title v-text="item.optionName" />
+                </v-list-item-content>
+                <v-list-item-action>
+                  <v-btn icon>
+                    <v-icon v-if="item.optionId ">
+                      delete
+                    </v-icon>
+                  </v-btn>
+                </v-list-item-action>
+              </v-list-item>
+            </v-list>
           </ValidationObserver>
           <v-card-actions>
             <v-btn
