@@ -40,15 +40,41 @@ const routes = [
     component: () => import('../views/product/ProductDetails'),
   },
   {
-    path: '/member/findMember',
-    name: 'FindMember',
-    component: () => import('../views/membership/findMember'),
-  },
-  {
     path: '/userCart',
-    name: 'UserCart',
+    name: 'FindMember',
     component: () => import('../views/purchase/userCart'),
   },
+  {
+    path: '/myPage/reviewInfo',
+    name: 'ReviewInfo',
+    component: () => import('../views/myPage/ModifyMembership'),
+  },
+  {
+    path: '/myPage/modifyInfo',
+    name: 'ModifyInfo',
+    component: () => import('../views/myPage/ModifyMembership'),
+  },
+  {
+    path: '/myPage/orderInfo',
+    name: 'OrderInfo',
+    component: () => import('../views/myPage/ModifyMembership'),
+  },
+  {
+    path: '/myPage/bookmarkInfo',
+    name: 'BookmarkInfo',
+    component: () => import('../views/myPage/ModifyMembership'),
+  },
+  {
+    path: '/myPage/inquireInfo',
+    name: 'InquireInfo',
+    component: () => import('../views/myPage/ModifyMembership'),
+  },
+  {
+    path: '/myPage/reviewInfo',
+    name: 'ReviewInfo',
+    component: () => import('../views/myPage/ModifyMembership'),
+  },
+
 ];
 
 const router = new VueRouter({
