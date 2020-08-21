@@ -16,9 +16,18 @@
           >
             <v-list-item-content>
               <v-list-item-title v-text="cart.name" />
-              <v-list-item-subtitle v-text="cart.price + '원'" />
+              <v-list-item-subtitle>
+                <v-row>
+                  <v-col cols="5">
+                    {{ cart.id }}
+                  </v-col>
+                  <v-col class="text-right">
+                    {{ cart.price + '원' }}
+                  </v-col>
+                </v-row>
+              </v-list-item-subtitle>
               <v-list-item-subtitle align="right">
-                <v-btn text>
+                <v-btn>
                   삭제
                 </v-btn>
               </v-list-item-subtitle>
@@ -38,15 +47,15 @@ export default {
       const lst = [];
 
       let map = {};
-      map.id = '001';
-      map.name = '마티스';
-      map.price = '299,000';
+      map.id = '900000000011000';
+      map.name = '인텔 제온 스케일러블 골드 5218 (캐스케이드레이크) (정품)';
+      map.price = '2,016,420';
       lst.push(map);
 
       map = {};
-      map.id = '002';
-      map.name = '마티스2';
-      map.price = '199,000';
+      map.id = '900000007136792';
+      map.name = 'AMD EPYC 7702 (롬) (정품)';
+      map.price = '12,867,140';
       lst.push(map);
 
       localStorage.setItem('shoppingCart', JSON.stringify(lst));

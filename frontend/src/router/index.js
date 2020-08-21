@@ -45,36 +45,20 @@ const routes = [
     component: () => import('../views/purchase/userCart'),
   },
   {
-    path: '/myPage/reviewInfo',
-    name: 'ReviewInfo',
-    component: () => import('../views/myPage/ModifyMembership'),
-  },
-  {
     path: '/myPage/modifyInfo',
     name: 'ModifyInfo',
     component: () => import('../views/myPage/ModifyMembership'),
   },
   {
     path: '/myPage/orderInfo',
-    name: 'OrderInfo',
-    component: () => import('../views/myPage/ModifyMembership'),
+    name: 'orderInfo',
+    component: () => import('../views/myPage/Order'),
   },
   {
-    path: '/myPage/bookmarkInfo',
-    name: 'BookmarkInfo',
-    component: () => import('../views/myPage/ModifyMembership'),
+    path: '/myPage/profile',
+    name: 'Profile',
+    component: () => import('../views/myPage/Profile'),
   },
-  {
-    path: '/myPage/inquireInfo',
-    name: 'InquireInfo',
-    component: () => import('../views/myPage/ModifyMembership'),
-  },
-  {
-    path: '/myPage/reviewInfo',
-    name: 'ReviewInfo',
-    component: () => import('../views/myPage/ModifyMembership'),
-  },
-
 ];
 
 const router = new VueRouter({

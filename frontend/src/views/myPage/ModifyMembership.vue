@@ -47,7 +47,9 @@
                 type="password"
                 :error-messages="errors"
                 label="비밀번호"
+                hint=""
                 requried
+                counter
               />
             </ValidationProvider>
             <ValidationProvider
@@ -60,7 +62,9 @@
                 type="password"
                 :error-messages="errors"
                 label="비밀번호확인"
+                hint=""
                 requried
+                counter
               />
             </ValidationProvider>
 
@@ -89,14 +93,32 @@
 </template>
 
 <script>
+import { required, max } from 'vee-validate/dist/rules';
+import {
+  extend, ValidationObserver, ValidationProvider,
+} from 'vee-validate';
+
+extend('required', {
+  ...required,
+  message: '{_field_}을 입력해주세요.',
+});
+
+extend('max', {
+  ...max,
+  message: '{_field_} 길이는 {length}자를 초과할 수 없습니다.',
+});
 export default {
   name: 'ModifyMembership',
+  components: {
+    ValidationObserver,
+    ValidationProvider,
+  },
   data() {
     return {
       member: {
         id: 'admin',
         userName: '김관리',
-        pw: 'admin',
+        pw: '',
         email: 'admin@acorn.com',
       },
     };
