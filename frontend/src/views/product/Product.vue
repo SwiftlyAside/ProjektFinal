@@ -82,6 +82,7 @@
                 label="옵션 이름"
               /><v-text-field
                 v-model="newOption.optionAddPrice"
+                prefix="₩"
                 label="옵션 추가가격"
               /><v-btn
                 icon

@@ -24,18 +24,6 @@
       />
 
       <v-spacer />
-      <v-btn text>
-        마이페이지
-      </v-btn>
-      <v-btn text>
-        장바구니
-      </v-btn>
-      <v-btn
-        text
-        to="/login"
-      >
-        로그인
-      </v-btn>
       <v-btn
         icon
         to="/admin"
@@ -109,7 +97,7 @@ export default {
     searchKeyword: '',
     items: [
       { heading: '상품 관리' },
-      { icon: 'list', text: '상품목록', link: '/productInfo' },
+      { icon: 'list', text: '상품관리', link: '/productInfo' },
       { icon: 'add', text: '상품등록', link: '/product' },
       { divider: true },
       { heading: '판매' },

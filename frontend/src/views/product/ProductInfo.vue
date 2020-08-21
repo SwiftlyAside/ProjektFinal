@@ -5,7 +5,8 @@
       min-width="800"
       width="60vw"
     >
-      <v-card-title><h2>Products</h2></v-card-title>
+      <v-card-title><h2>상품 관리</h2></v-card-title>
+      <v-divider />
       <v-list shaped>
         <v-list-item-group>
           <v-list-item
@@ -14,9 +15,30 @@
             @click="routeToDetails(item)"
           >
             <v-list-item-content>
-              <v-list-item-title v-text="item.productName" />
-              <v-list-item-subtitle v-text="item.price + '원'" />
+              <v-row>
+                <v-col cols="1">
+                  <v-img
+                    :src="'https://static.thenounproject.com/png/2794297-200.png'"
+                    :lazy-src="'https://static.thenounproject.com/png/2794297-200.png'"
+                    aspect-ratio="1"
+                    max-height="100"
+                    max-width="100"
+                  />
+                </v-col>
+                <v-col cols="10">
+                  <v-list-item-title v-text="item.productName" />
+                  <v-list-item-subtitle v-text="numberWithCommas(item.price) + '원'" />
+                </v-col>
+              </v-row>
             </v-list-item-content>
+            <v-list-item-action>
+              <v-btn @click.prevent="">
+                수정
+              </v-btn>
+              <v-btn @click.prevent="">
+                삭제
+              </v-btn>
+            </v-list-item-action>
           </v-list-item>
         </v-list-item-group>
       </v-list>
@@ -69,6 +91,9 @@ export default {
     }
   },
   methods: {
+    numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    },
     fetchData() {
       this.items = this.$route.params.data;
     },
