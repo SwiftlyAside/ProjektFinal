@@ -22,12 +22,17 @@
         solo-inverted
         @keyup.enter="getProduct()"
       />
-
       <v-spacer />
-      <v-btn text>
+      <v-btn
+        text
+        to="/myPage/profile"
+      >
         마이페이지
       </v-btn>
-      <v-btn text>
+      <v-btn
+        text
+        to="/userCart"
+      >
         장바구니
       </v-btn>
       <v-btn
@@ -122,6 +127,19 @@ export default {
       { heading: '사이트 관리' },
       { icon: 'contact_support', text: '문의 내용 확인', link: '/contacts' },
       { icon: 'design_services', text: '상품 메뉴 관리', link: '/layout' },
+    ],
+    mypage_items: [
+      { heading: '내 정보' },
+      { icon: 'perm_identity', text: 'admin', link: '/myPage/modifyInfo' },
+      { divider: true },
+      { heading: '주문/조회' },
+      { icon: 'local_shipping', text: '주문/배송조회', link: '/myPage/orderInfo' },
+      { icon: 'receipt', text: '현금영수증/세금계산서', link: '' },
+      { divider: true },
+      { heading: '나의 활동 내역' },
+      { icon: 'favorite', text: '찜목록', link: '/myPage/bookmarkInfo' },
+      { icon: 'email', text: '문의내용', link: '/myPage/inquireInfo' },
+      { icon: 'remove_red_eye', text: '제품리뷰', link: '/myPage/reviewInfo' },
     ],
   }),
   methods: {

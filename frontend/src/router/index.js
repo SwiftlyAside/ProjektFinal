@@ -40,9 +40,24 @@ const routes = [
     component: () => import('../views/product/ProductDetails'),
   },
   {
-    path: '/member/findMember',
+    path: '/userCart',
     name: 'FindMember',
-    component: () => import('../views/membership/findMember'),
+    component: () => import('../views/purchase/userCart'),
+  },
+  {
+    path: '/myPage/modifyInfo',
+    name: 'ModifyInfo',
+    component: () => import('../views/myPage/ModifyMembership'),
+  },
+  {
+    path: '/myPage/orderInfo',
+    name: 'orderInfo',
+    component: () => import('../views/myPage/Order'),
+  },
+  {
+    path: '/myPage/profile',
+    name: 'Profile',
+    component: () => import('../views/myPage/Profile'),
   },
 ];
 
